@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import groupImg from '../assets/group_travel_happy_tourists_1764719875005.png';
+import groupImg from '../assets/tempo_traveller_best_cab_services.png';
 
 const GroupTravel = () => {
     return (

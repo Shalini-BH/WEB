@@ -140,11 +140,11 @@ const Home = () => {
                         <div
                             key={dest.name}
                             style={{
-                                flex: '1 1 200px',
+                                flex: '1 1 250px',
                                 position: 'relative',
                                 borderRadius: 'var(--radius-md)',
                                 overflow: 'hidden',
-                                height: '180px',
+                                height: '250px',
                                 cursor: 'pointer',
                                 boxShadow: 'var(--shadow-md)',
                                 transition: 'transform 0.2s'
@@ -154,7 +154,7 @@ const Home = () => {
                                     window.location.href = 'tel:+917892665004';
                                 }
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                         >
                             <img src={dest.img} alt={dest.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -163,20 +163,29 @@ const Home = () => {
                                 bottom: 0,
                                 left: 0,
                                 right: 0,
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%)',
                                 color: 'white',
-                                padding: 'var(--spacing-md)',
-                                textAlign: 'center'
+                                padding: 'var(--spacing-lg)',
+                                textAlign: 'left'
                             }}>
                                 <h3 style={{
                                     margin: 0,
-                                    fontSize: '1.5rem',
-                                    fontWeight: 'bold',
-                                    textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-                                    letterSpacing: '1px'
+                                    fontSize: '1.75rem',
+                                    fontWeight: '800',
+                                    textShadow: '2px 2px 4px rgba(0,0,0,0.9)',
+                                    letterSpacing: '0.5px'
                                 }}>
                                     {dest.name}
                                 </h3>
+                                <p style={{
+                                    margin: 'var(--spacing-xs) 0 0 0',
+                                    fontSize: '1rem',
+                                    fontWeight: '500',
+                                    opacity: 0.9,
+                                    textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
+                                }}>
+                                    {dest.desc}
+                                </p>
                             </div>
                         </div>
                     ))}
