@@ -142,13 +142,20 @@ const Home = () => {
                                 bottom: 0,
                                 left: 0,
                                 right: 0,
-                                background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
                                 color: 'white',
-                                padding: 'var(--spacing-sm)',
+                                padding: 'var(--spacing-md)',
                                 textAlign: 'center'
                             }}>
-                                <h3 style={{ margin: 0, fontSize: '1rem' }}>{dest.name}</h3>
-                                <small style={{ fontSize: '0.8rem', opacity: 0.9 }}>{dest.desc}</small>
+                                <h3 style={{
+                                    margin: 0,
+                                    fontSize: '1.5rem',
+                                    fontWeight: 'bold',
+                                    textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                                    letterSpacing: '1px'
+                                }}>
+                                    {dest.name}
+                                </h3>
                             </div>
                         </div>
                     ))}

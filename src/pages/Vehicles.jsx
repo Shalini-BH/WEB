@@ -12,10 +12,18 @@ const Vehicles = () => {
     const vehicleTypes = ['Sedan', 'SUV', 'Tempo Traveller', 'Bus'];
 
     const vehiclesByType = {
-        'Sedan': ['Swift Dzire', 'Toyota Etios'],
-        'SUV': ['Toyota Innova', 'Innova Crysta', 'Maruti Ertiga'],
-        'Tempo Traveller': ['12+1 Tempo Traveller'],
-        'Bus': ['Luxury Bus']
+        'Sedan': [
+            'Swift Dzire', 'Toyota Etios', 'Hyundai Xcent', 'Honda Amaze', 'Tata Tigor',
+            'Maruti Ciaz', 'Honda City', 'Hyundai Verna', 'Skoda Slavia', 'Volkswagen Virtus',
+            'Maruti Dzire Tour', 'Tata Indigo', 'Ford Aspire', 'Nissan Sunny'
+        ],
+        'SUV': [
+            'Toyota Innova', 'Innova Crysta', 'Maruti Ertiga', 'Mahindra Xylo', 'Mahindra Marazzo',
+            'Toyota Hycross', 'Mahindra Scorpio', 'Mahindra XUV700', 'Tata Safari', 'Tata Harrier',
+            'Kia Carens', 'Renault Triber', 'Chevrolet Tavera', 'Force Trax Cruiser'
+        ],
+        'Tempo Traveller': ['12+1 Tempo Traveller', '17 Seater Tempo', '26 Seater Tempo'],
+        'Bus': ['Luxury Bus (30 Seater)', 'Volvo Bus (45 Seater)', 'Mini Bus']
     };
 
     const vehicleCards = [

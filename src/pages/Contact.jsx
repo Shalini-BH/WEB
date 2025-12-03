@@ -22,10 +22,21 @@ const Contact = () => {
                     <p>For all bookings & pricing, call our 24/7 support team.</p>
 
                     <div style={{ marginTop: 'var(--spacing-lg)' }}>
-                        <p><strong>Phone:</strong> +91 98765 43210</p>
-                        <p><strong>WhatsApp:</strong> +91 98765 43210</p>
-                        <p><strong>Email:</strong> booking@southindiatours.com</p>
-                        <p><strong>Address:</strong> 123, Main Road, Chennai, Tamil Nadu.</p>
+                        <div style={{ marginBottom: 'var(--spacing-md)', padding: 'var(--spacing-md)', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-md)' }}>
+                            <h4 style={{ color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>📍 Location</h4>
+                            <p><strong>JP Nagar, Bangalore</strong></p>
+                            <p>Karnataka, India</p>
+                        </div>
+
+                        <div style={{ marginBottom: 'var(--spacing-md)', padding: 'var(--spacing-md)', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-md)' }}>
+                            <h4 style={{ color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>🚕 Doorstep Service</h4>
+                            <p><strong>We pick you up from your home!</strong></p>
+                            <p>Hassle-free pickup and drop anywhere in Bangalore.</p>
+                        </div>
+
+                        <p><strong>Phone:</strong> +91 78926 65004</p>
+                        <p><strong>WhatsApp:</strong> +91 78926 65004</p>
+                        <p><strong>Email:</strong> booking@bestservicecabs.com</p>
                     </div>
 
                     <div style={{ marginTop: 'var(--spacing-xl)' }}>
