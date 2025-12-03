@@ -6,6 +6,27 @@ import goaImg from '../assets/dest_goa_beach_1764719811518.png';
 import tirupatiImg from '../assets/dest_tirupati_temple_1764719828916.png';
 import bangaloreImg from '../assets/dest_bangalore_vidhana_soudha_1764719844637.png';
 import chennaiImg from '../assets/dest_chennai_marina_1764719899053.png';
+import coorgImg from '../assets/dest_coorg.png';
+import hampiImg from '../assets/dest_hampi.png';
+import chikmagalurImg from '../assets/dest_chikmagalur.jpg';
+import kukkeImg from '../assets/dest_kukke.jpg';
+import ootyImg from '../assets/dest_ooty.jpg';
+import kodaikanalImg from '../assets/dest_kodaikanal.jpg';
+import munnarImg from '../assets/dest_munnar.jpg';
+import alleppeyImg from '../assets/dest_alleppey.jpg';
+import wayanadImg from '../assets/dest_wayanad.JPG';
+import thekkadyImg from '../assets/dest_thekkady.jpg';
+import varkalaImg from '../assets/dest_varkala.jpg';
+import maduraiImg from '../assets/dest_madurai.jpg';
+import rameswaramImg from '../assets/dest_rameswaram.jpg';
+import kanyakumariImg from '../assets/dest_kanyakumari.jpg';
+import mahabalipuramImg from '../assets/dest_mahabalipuram.jpg';
+import kochiImg from '../assets/dest_kochi.jpg';
+import hyderabadImg from '../assets/dest_hyderabad.jpg';
+import pondicherryImg from '../assets/dest_pondicherry.jpg';
+import arakuImg from '../assets/dest_araku.jpg';
+import hosurImg from '../assets/dest_hosur.jpg';
+import gokarnaImg from '../assets/dest_gokarna.JPG';
 
 const Home = () => {
     return (
@@ -84,36 +105,36 @@ const Home = () => {
                         // Karnataka
                         { name: 'Mysore', img: mysoreImg, desc: 'Palace & Heritage' },
                         { name: 'Bangalore', img: bangaloreImg, desc: 'Garden City' },
-                        { name: 'Coorg', img: heroImg, desc: 'Coffee & Hills' },
-                        { name: 'Hampi', img: heroImg, desc: 'Ancient Ruins' },
-                        { name: 'Gokarna', img: goaImg, desc: 'Beaches & Temples' },
-                        { name: 'Chikmagalur', img: heroImg, desc: 'Nature & Trekking' },
-                        { name: 'Kukke Subramanya', img: mysoreImg, desc: 'Pilgrimage' },
+                        { name: 'Coorg', img: coorgImg, desc: 'Coffee & Hills' },
+                        { name: 'Hampi', img: hampiImg, desc: 'Ancient Ruins' },
+                        { name: 'Gokarna', img: gokarnaImg, desc: 'Beaches & Temples' },
+                        { name: 'Chikmagalur', img: chikmagalurImg, desc: 'Nature & Trekking' },
+                        { name: 'Kukke Subramanya', img: kukkeImg, desc: 'Pilgrimage' },
 
                         // Tamil Nadu
                         { name: 'Chennai', img: chennaiImg, desc: 'Marina Beach' },
-                        { name: 'Madurai', img: tirupatiImg, desc: 'Meenakshi Temple' },
-                        { name: 'Ooty', img: heroImg, desc: 'Hill Station' },
-                        { name: 'Kodaikanal', img: heroImg, desc: 'Princess of Hills' },
-                        { name: 'Rameswaram', img: tirupatiImg, desc: 'Holy Island' },
-                        { name: 'Kanyakumari', img: chennaiImg, desc: 'Southern Tip' },
-                        { name: 'Mahabalipuram', img: chennaiImg, desc: 'Rock Cut Temples' },
+                        { name: 'Madurai', img: maduraiImg, desc: 'Meenakshi Temple' },
+                        { name: 'Ooty', img: ootyImg, desc: 'Hill Station' },
+                        { name: 'Kodaikanal', img: kodaikanalImg, desc: 'Princess of Hills' },
+                        { name: 'Rameswaram', img: rameswaramImg, desc: 'Holy Island' },
+                        { name: 'Kanyakumari', img: kanyakumariImg, desc: 'Southern Tip' },
+                        { name: 'Mahabalipuram', img: mahabalipuramImg, desc: 'Rock Cut Temples' },
 
                         // Kerala
-                        { name: 'Munnar', img: heroImg, desc: 'Tea Gardens' },
-                        { name: 'Alleppey', img: heroImg, desc: 'Backwaters' },
-                        { name: 'Kochi', img: chennaiImg, desc: 'Queen of Arabian Sea' },
-                        { name: 'Wayanad', img: heroImg, desc: 'Nature & Spices' },
-                        { name: 'Thekkady', img: heroImg, desc: 'Wildlife' },
-                        { name: 'Varkala', img: goaImg, desc: 'Cliffs & Beaches' },
+                        { name: 'Munnar', img: munnarImg, desc: 'Tea Gardens' },
+                        { name: 'Alleppey', img: alleppeyImg, desc: 'Backwaters' },
+                        { name: 'Kochi', img: kochiImg, desc: 'Queen of Arabian Sea' },
+                        { name: 'Wayanad', img: wayanadImg, desc: 'Nature & Spices' },
+                        { name: 'Thekkady', img: thekkadyImg, desc: 'Wildlife' },
+                        { name: 'Varkala', img: varkalaImg, desc: 'Cliffs & Beaches' },
 
                         // Others
                         { name: 'Goa', img: goaImg, desc: 'Party & Beaches' },
                         { name: 'Tirupati', img: tirupatiImg, desc: 'Lord Venkateswara' },
-                        { name: 'Hyderabad', img: bangaloreImg, desc: 'City of Pearls' },
-                        { name: 'Pondicherry', img: chennaiImg, desc: 'French Colony' },
-                        { name: 'Araku Valley', img: heroImg, desc: 'Scenic Valley' },
-                        { name: 'Hosur', img: bangaloreImg, desc: 'Industrial Hub' },
+                        { name: 'Hyderabad', img: hyderabadImg, desc: 'City of Pearls' },
+                        { name: 'Pondicherry', img: pondicherryImg, desc: 'French Colony' },
+                        { name: 'Araku Valley', img: arakuImg, desc: 'Scenic Valley' },
+                        { name: 'Hosur', img: hosurImg, desc: 'Industrial Hub' },
 
                     ].map((dest) => (
                         <div

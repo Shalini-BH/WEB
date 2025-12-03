@@ -4,6 +4,9 @@ import goaImg from '../assets/dest_goa_beach_1764719811518.png';
 import tirupatiImg from '../assets/dest_tirupati_temple_1764719828916.png';
 import heroImg from '../assets/hero_south_india_landscape_1764700257274.png';
 import chennaiImg from '../assets/dest_chennai_marina_1764719899053.png';
+import ootyImg from '../assets/dest_ooty.jpg';
+import munnarImg from '../assets/dest_munnar.jpg';
+import rameswaramImg from '../assets/dest_rameswaram.jpg';
 
 const Tours = () => {
     const tours = [
@@ -27,9 +30,9 @@ const Tours = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--spacing-lg)' }}>
                 {[
-                    { name: 'Ooty & Coorg', duration: '4 Days / 3 Nights', highlights: 'Botanical Gardens, Tea Estates, Abbey Falls', img: heroImg },
-                    { name: 'Munnar & Alleppey', duration: '5 Days / 4 Nights', highlights: 'Tea Museum, Houseboat Stay, Backwaters', img: heroImg },
-                    { name: 'Rameswaram & Kanyakumari', duration: '3 Days / 2 Nights', highlights: 'Temple Visit, Vivekananda Rock, Sunrise', img: chennaiImg },
+                    { name: 'Ooty & Coorg', duration: '4 Days / 3 Nights', highlights: 'Botanical Gardens, Tea Estates, Abbey Falls', img: ootyImg },
+                    { name: 'Munnar & Alleppey', duration: '5 Days / 4 Nights', highlights: 'Tea Museum, Houseboat Stay, Backwaters', img: munnarImg },
+                    { name: 'Rameswaram & Kanyakumari', duration: '3 Days / 2 Nights', highlights: 'Temple Visit, Vivekananda Rock, Sunrise', img: rameswaramImg },
                     { name: 'Tirupati Package', duration: '2 Days / 1 Night', highlights: 'Darshan Assistance, Local Sightseeing', img: tirupatiImg },
                     { name: 'Mysore Heritage', duration: '2 Days / 1 Night', highlights: 'Palace, Zoo, Chamundi Hills', img: mysoreImg },
                     { name: 'Goa Beach Fun', duration: '4 Days / 3 Nights', highlights: 'Beaches, Churches, Water Sports', img: goaImg }
