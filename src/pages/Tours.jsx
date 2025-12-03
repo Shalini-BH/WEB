@@ -19,7 +19,7 @@ const Tours = () => {
     return (
         <div className="container section">
             <Helmet>
-                <title>Tour Packages | South India Tours</title>
+                <title>Tour Packages |  Best Service Cabs and Travels</title>
                 <meta name="description" content="Explore Ooty, Munnar, Kodaikanal and more with our custom South India tour packages." />
             </Helmet>
             <h1 className="text-center">South India Tour Packages</h1>

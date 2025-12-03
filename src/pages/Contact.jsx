@@ -10,7 +10,7 @@ const Contact = () => {
     return (
         <div className="container section">
             <Helmet>
-                <title>Contact Us | South India Tours</title>
+                <title>Contact Us | Best Service Cabs and Travels</title>
                 <meta name="description" content="Get in touch for bookings and enquiries. Call or WhatsApp us 24/7." />
             </Helmet>
             <h1 className="text-center">Contact Us</h1>

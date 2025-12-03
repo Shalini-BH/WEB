@@ -11,7 +11,7 @@ const WelcomePopup = () => {
         const hasSeenPopup = sessionStorage.getItem('hasSeenWelcomePopup');
         if (!hasSeenPopup) {
             // Show popup after a short delay
-            const timer = setTimeout(() => setIsOpen(true), 1500);
+            const timer = setTimeout(() => setIsOpen(true), 1000);
             return () => clearTimeout(timer);
         }
     }, []);
@@ -30,7 +30,7 @@ const WelcomePopup = () => {
         // Mock OTP generation
         const mockOtp = Math.floor(1000 + Math.random() * 9000).toString();
         setGeneratedOtp(mockOtp);
-        alert(`Your OTP is: ${mockOtp}`); // In real app, this would be SMS
+        alert(`(Simulated SMS)\n\nYour OTP for South India Explorer is: ${mockOtp}`);
         setStep('otp');
     };
 
@@ -41,6 +41,8 @@ const WelcomePopup = () => {
             const text = `*New Lead from Website*%0AName: ${formData.name}%0APhone: ${formData.phone}%0AStatus: OTP Verified`;
             window.open(`https://wa.me/917892665004?text=${text}`, '_blank');
             setStep('success');
+            // Only set seen flag on success
+            sessionStorage.setItem('hasSeenWelcomePopup', 'true');
         } else {
             alert('Invalid OTP. Please try again.');
         }
@@ -55,12 +57,12 @@ const WelcomePopup = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.7)',
+            backgroundColor: 'rgba(0,0,0,0.85)', // Darker backdrop
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 2000,
-            backdropFilter: 'blur(5px)'
+            backdropFilter: 'blur(8px)' // Stronger blur
         }}>
             <div style={{
                 backgroundColor: 'white',
@@ -72,26 +74,14 @@ const WelcomePopup = () => {
                 boxShadow: 'var(--shadow-lg)',
                 textAlign: 'center'
             }}>
-                {step !== 'success' && (
-                    <button
-                        onClick={handleClose}
-                        style={{
-                            position: 'absolute',
-                            top: '10px',
-                            right: '10px',
-                            background: 'none',
-                            border: 'none',
-                            fontSize: '1.5rem',
-                            cursor: 'pointer',
-                            color: '#666'
-                        }}
-                    >&times;</button>
-                )}
+                {/* Close button removed to enforce filling */}
 
                 {step === 'details' && (
                     <>
                         <h2 style={{ color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>Welcome to South India Explorer!</h2>
-                        <p style={{ marginBottom: 'var(--spacing-lg)', color: '#666' }}>Enter your details to unlock exclusive offers.</p>
+                        <p style={{ marginBottom: 'var(--spacing-lg)', color: '#666' }}>
+                            To browse our exclusive packages and offers, please verify your phone number.
+                        </p>
                         <form onSubmit={handleSendOtp} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
                             <input
                                 type="text"

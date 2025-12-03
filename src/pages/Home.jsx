@@ -146,7 +146,8 @@ const Home = () => {
                                 overflow: 'hidden',
                                 height: '250px',
                                 cursor: 'pointer',
-                                boxShadow: 'var(--shadow-md)',
+                                // boxShadow: 'var(--shadow-md)',
+                                textColor: 'white',
                                 transition: 'transform 0.2s'
                             }}
                             onClick={() => {
@@ -163,7 +164,7 @@ const Home = () => {
                                 bottom: 0,
                                 left: 0,
                                 right: 0,
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%)',
+                                background: 'linear-gradient(to top, rgba(50, 47, 47, 0.95) 0%, rgba(44, 40, 40, 0.7) 50%, transparent 100%)',
                                 color: 'white',
                                 padding: 'var(--spacing-lg)',
                                 textAlign: 'left'
@@ -172,7 +173,8 @@ const Home = () => {
                                     margin: 0,
                                     fontSize: '1.75rem',
                                     fontWeight: '800',
-                                    textShadow: '2px 2px 4px rgba(0,0,0,0.9)',
+                                    textColor: 'white',
+                                    textShadow: '2px 2px 4px rgba(250, 237, 237, 0.9)',
                                     letterSpacing: '0.5px'
                                 }}>
                                     {dest.name}
@@ -182,7 +184,7 @@ const Home = () => {
                                     fontSize: '1rem',
                                     fontWeight: '500',
                                     opacity: 0.9,
-                                    textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
+                                    // textShadow: '1px 1px 2px rgba(255, 250, 250, 0.8)'
                                 }}>
                                     {dest.desc}
                                 </p>

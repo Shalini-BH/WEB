@@ -5,7 +5,7 @@ const GroupTravel = () => {
     return (
         <div className="container section">
             <Helmet>
-                <title>Group Tours | South India Explorer</title>
+                <title>Group Tours |  Best Service Cabs and Travels</title>
                 <meta name="description" content="Join our monthly group tours for solo travelers. Explore South India with new friends." />
             </Helmet>
             <h1 className="text-center">South India Explorer - Group Tours</h1>
