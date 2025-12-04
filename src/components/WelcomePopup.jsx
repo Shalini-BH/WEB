@@ -8,7 +8,7 @@ const WelcomePopup = () => {
     const [generatedOtp, setGeneratedOtp] = useState('');
 
     useEffect(() => {
-        const hasSeenPopup = sessionStorage.getItem('hasSeenWelcomePopup');
+        const hasSeenPopup = sessionStorage.getItem('hasSeenWelcomePopup_v2');
         if (!hasSeenPopup) {
             // Show popup after a short delay
             const timer = setTimeout(() => setIsOpen(true), 1000);
@@ -18,7 +18,7 @@ const WelcomePopup = () => {
 
     const handleClose = () => {
         setIsOpen(false);
-        sessionStorage.setItem('hasSeenWelcomePopup', 'true');
+        sessionStorage.setItem('hasSeenWelcomePopup_v2', 'true');
     };
 
     const handleSendOtp = (e) => {
@@ -42,7 +42,7 @@ const WelcomePopup = () => {
             window.open(`https://wa.me/917892665004?text=${text}`, '_blank');
             setStep('success');
             // Only set seen flag on success
-            sessionStorage.setItem('hasSeenWelcomePopup', 'true');
+            sessionStorage.setItem('hasSeenWelcomePopup_v2', 'true');
         } else {
             alert('Invalid OTP. Please try again.');
         }

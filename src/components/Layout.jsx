@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
-import DiscountPopup from './DiscountPopup';
 import BookingModal from './BookingModal';
 import WelcomePopup from './WelcomePopup';
 
@@ -49,7 +48,6 @@ const Layout = () => {
             </main>
             <Footer />
             <WhatsAppButton />
-            <DiscountPopup />
             <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             <WelcomePopup />
         </div>
