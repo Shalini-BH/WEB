@@ -1,21 +1,27 @@
 :root {
   /* Brand Colors - South India Inspired */
-  --color-primary: #006A4E; /* Deep Forest Green (Western Ghats) */
+  --color-primary: #006A4E;
+  /* Deep Forest Green (Western Ghats) */
   --color-primary-light: #008f68;
   --color-primary-dark: #004d38;
-  
-  --color-secondary: #0077BE; /* Ocean Blue (Coastal) */
+
+  --color-secondary: #0077BE;
+  /* Ocean Blue (Coastal) */
   --color-secondary-light: #3399ff;
   --color-secondary-dark: #005c99;
 
-  --color-accent: #FF9933; /* Temple Orange/Marigold */
+  --color-accent: #FF9933;
+  /* Temple Orange/Marigold */
   --color-accent-light: #ffb366;
 
   /* Neutrals */
-  --color-background: #F9FAFB; /* Off-white */
+  --color-background: #F9FAFB;
+  /* Off-white */
   --color-surface: #FFFFFF;
-  --color-text: #1F2937; /* Dark Gray */
-  --color-text-light: #6B7280; /* Medium Gray */
+  --color-text: #1F2937;
+  /* Dark Gray */
+  --color-text-light: #6B7280;
+  /* Medium Gray */
   --color-border: #E5E7EB;
 
   /* Typography */
@@ -40,4 +46,16 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+body.dark-mode {
+  --color-background: #111827;
+  --color-surface: #1F2937;
+  --color-text: #F9FAFB;
+  --color-text-light: #D1D5DB;
+  --color-border: #374151;
+  --color-primary: #34D399;
+  /* Lighter Green for dark mode */
+  --color-secondary: #60A5FA;
+  /* Lighter Blue */
 }

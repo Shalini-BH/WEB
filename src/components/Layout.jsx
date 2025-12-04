@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 import BookingModal from './BookingModal';
 import WelcomePopup from './WelcomePopup';
+import { useBooking } from '../context/BookingContext';
 
 const Layout = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isModalOpen, closeModal, prefillMessage, openModal } = useBooking();
 
     return (
         <div className="app-layout">
@@ -27,7 +27,7 @@ const Layout = () => {
             }}>
                 <span>📞 Call & Book Now: <a href="tel:+917892665004" style={{ color: 'white', textDecoration: 'underline' }}>+91 7892665004</a></span>
                 <button
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => openModal()}
                     style={{
                         backgroundColor: 'white',
                         color: 'var(--color-accent)',
@@ -48,7 +48,7 @@ const Layout = () => {
             </main>
             <Footer />
             <WhatsAppButton />
-            <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <BookingModal isOpen={isModalOpen} onClose={closeModal} prefillMessage={prefillMessage} />
             <WelcomePopup />
         </div>
     );

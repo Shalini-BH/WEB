@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useBooking } from '../context/BookingContext';
 import mysoreImg from '../assets/dest_mysore_palace_1764719793546.png';
 import goaImg from '../assets/dest_goa_beach_1764719811518.png';
 import tirupatiImg from '../assets/dest_tirupati_temple_1764719828916.png';
@@ -9,12 +11,22 @@ import munnarImg from '../assets/dest_munnar.jpg';
 import rameswaramImg from '../assets/dest_rameswaram.jpg';
 
 const Tours = () => {
+    const { openModal } = useBooking();
+    const [searchQuery, setSearchQuery] = useState('');
+
     const tours = [
-        { name: 'Ooty & Coorg', duration: '4 Days / 3 Nights', highlights: 'Botanical Gardens, Tea Estates, Abbey Falls' },
-        { name: 'Munnar & Alleppey', duration: '5 Days / 4 Nights', highlights: 'Tea Museum, Houseboat Stay, Backwaters' },
-        { name: 'Rameswaram & Kanyakumari', duration: '3 Days / 2 Nights', highlights: 'Temple Visit, Vivekananda Rock, Sunrise' },
-        { name: 'Tirupati Package', duration: '2 Days / 1 Night', highlights: 'Darshan Assistance, Local Sightseeing' },
+        { name: 'Ooty & Coorg', duration: '4 Days / 3 Nights', highlights: 'Botanical Gardens, Tea Estates, Abbey Falls', img: ootyImg },
+        { name: 'Munnar & Alleppey', duration: '5 Days / 4 Nights', highlights: 'Tea Museum, Houseboat Stay, Backwaters', img: munnarImg },
+        { name: 'Rameswaram & Kanyakumari', duration: '3 Days / 2 Nights', highlights: 'Temple Visit, Vivekananda Rock, Sunrise', img: rameswaramImg },
+        { name: 'Tirupati Package', duration: '2 Days / 1 Night', highlights: 'Darshan Assistance, Local Sightseeing', img: tirupatiImg },
+        { name: 'Mysore Heritage', duration: '2 Days / 1 Night', highlights: 'Palace, Zoo, Chamundi Hills', img: mysoreImg },
+        { name: 'Goa Beach Fun', duration: '4 Days / 3 Nights', highlights: 'Beaches, Churches, Water Sports', img: goaImg }
     ];
+
+    const filteredTours = tours.filter(tour =>
+        tour.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tour.highlights.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="container section">
@@ -28,15 +40,26 @@ const Tours = () => {
                 <strong>Contact us for price quote — Call Support.</strong>
             </p>
 
+            {/* Search Bar */}
+            <div style={{ maxWidth: '500px', margin: '0 auto var(--spacing-xl)' }}>
+                <input
+                    type="text"
+                    placeholder="Search tours (e.g., Ooty, Temple, Beach)..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{
+                        width: '100%',
+                        padding: 'var(--spacing-md)',
+                        borderRadius: 'var(--radius-full)',
+                        border: '1px solid var(--color-border)',
+                        fontSize: '1rem',
+                        boxShadow: 'var(--shadow-sm)'
+                    }}
+                />
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--spacing-lg)' }}>
-                {[
-                    { name: 'Ooty & Coorg', duration: '4 Days / 3 Nights', highlights: 'Botanical Gardens, Tea Estates, Abbey Falls', img: ootyImg },
-                    { name: 'Munnar & Alleppey', duration: '5 Days / 4 Nights', highlights: 'Tea Museum, Houseboat Stay, Backwaters', img: munnarImg },
-                    { name: 'Rameswaram & Kanyakumari', duration: '3 Days / 2 Nights', highlights: 'Temple Visit, Vivekananda Rock, Sunrise', img: rameswaramImg },
-                    { name: 'Tirupati Package', duration: '2 Days / 1 Night', highlights: 'Darshan Assistance, Local Sightseeing', img: tirupatiImg },
-                    { name: 'Mysore Heritage', duration: '2 Days / 1 Night', highlights: 'Palace, Zoo, Chamundi Hills', img: mysoreImg },
-                    { name: 'Goa Beach Fun', duration: '4 Days / 3 Nights', highlights: 'Beaches, Churches, Water Sports', img: goaImg }
-                ].map((tour) => (
+                {filteredTours.map((tour) => (
                     <div key={tour.name} style={{
                         border: '1px solid var(--color-border)',
                         borderRadius: 'var(--radius-md)',
@@ -50,15 +73,13 @@ const Tours = () => {
                             <p><strong>Duration:</strong> {tour.duration}</p>
                             <p><strong>Highlights:</strong> {tour.highlights}</p>
                             <div style={{ marginTop: 'var(--spacing-md)' }}>
-                                <a
-                                    href={`https://wa.me/917892665004?text=Hi, I want a quote for ${tour.name}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <button
+                                    onClick={() => openModal(`I am interested in the ${tour.name} package (${tour.duration}). Please provide a quote.`)}
                                     className="btn btn-secondary"
-                                    style={{ width: '100%', textDecoration: 'none', display: 'block', textAlign: 'center' }}
+                                    style={{ width: '100%', display: 'block', textAlign: 'center' }}
                                 >
-                                    Get Quote via WhatsApp
-                                </a>
+                                    Get Quote
+                                </button>
                             </div>
                         </div>
                     </div>

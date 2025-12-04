@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    const toggleTheme = () => {
+        setIsDarkMode(!isDarkMode);
+        document.body.classList.toggle('dark-mode');
+    };
 
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Vehicles', path: '/vehicles' },
         { name: 'Tours', path: '/tours' },
         { name: 'Group Travel', path: '/group-travel' },
+        { name: 'Blog', path: '/blog' },
         { name: 'About', path: '/about' },
         { name: 'Contact', path: '/contact' },
     ];
@@ -30,12 +37,26 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="desktop-menu flex gap-md" style={{ display: 'none' }}>
+                <div className="desktop-menu flex gap-md items-center" style={{ display: 'none' }}>
                     {navLinks.map((link) => (
                         <Link key={link.name} to={link.path} style={{ fontWeight: 500 }}>
                             {link.name}
                         </Link>
                     ))}
+                    <button
+                        onClick={toggleTheme}
+                        style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: 'var(--color-text)',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}
+                        title="Toggle Dark Mode"
+                    >
+                        {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -69,6 +90,33 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
+                    <button
+                        onClick={() => {
+                            toggleTheme();
+                            setIsOpen(false);
+                        }}
+                        style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: 'var(--color-text)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontSize: '1.1rem',
+                            padding: 'var(--spacing-sm) 0',
+                            textAlign: 'left'
+                        }}
+                    >
+                        {isDarkMode ? (
+                            <>
+                                <Sun size={20} style={{ marginRight: '10px' }} /> Light Mode
+                            </>
+                        ) : (
+                            <>
+                                <Moon size={20} style={{ marginRight: '10px' }} /> Dark Mode
+                            </>
+                        )}
+                    </button>
                 </div>
             )}
 

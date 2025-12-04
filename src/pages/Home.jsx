@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useBooking } from '../context/BookingContext';
+import TestimonialCarousel from '../components/TestimonialCarousel';
+import DestinationMap from '../components/DestinationMap';
 import heroImg from '../assets/hero_south_india_landscape_1764700257274.png';
 import mysoreImg from '../assets/dest_mysore_palace_1764719793546.png';
 import goaImg from '../assets/dest_goa_beach_1764719811518.png';
@@ -29,6 +32,7 @@ import hosurImg from '../assets/dest_hosur.jpg';
 import gokarnaImg from '../assets/dest_gokarna.JPG';
 
 const Home = () => {
+    const { openModal } = useBooking();
     return (
         <div>
             <Helmet>
@@ -53,9 +57,13 @@ const Home = () => {
                         <strong>Better rates than Ola/Uber. Premium comfort guaranteed.</strong>
                     </p>
                     <div className="flex gap-md justify-center" style={{ flexWrap: 'wrap' }}>
-                        <Link to="/vehicles" className="btn btn-accent" style={{ backgroundColor: 'var(--color-accent)', color: 'white' }}>
+                        <button
+                            onClick={() => openModal("I want to book a ride. Please contact me.")}
+                            className="btn btn-accent"
+                            style={{ backgroundColor: 'var(--color-accent)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '1rem' }}
+                        >
                             Book Your Ride
-                        </Link>
+                        </button>
                         <Link to="/tours" className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>
                             View Tour Packages
                         </Link>
@@ -151,9 +159,7 @@ const Home = () => {
                                 transition: 'transform 0.2s'
                             }}
                             onClick={() => {
-                                if (confirm(`Call to book a trip to ${dest.name}?`)) {
-                                    window.location.href = 'tel:+917892665004';
-                                }
+                                openModal(`I am interested in a trip to ${dest.name}. Please provide details.`);
                             }}
                             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -194,30 +200,20 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Destination Map */}
+            <section className="section container">
+                <h2 className="text-center">Explore Our Destinations</h2>
+                <p className="text-center" style={{ marginBottom: 'var(--spacing-xl)' }}>
+                    We cover all major tourist spots in South India.
+                </p>
+                <DestinationMap />
+            </section>
+
             {/* Customer Reviews */}
             <section className="section container">
                 <h2 className="text-center">What Our Customers Say</h2>
-                <div className="flex gap-md" style={{ flexWrap: 'wrap', justifyContent: 'center', marginTop: 'var(--spacing-xl)' }}>
-                    {[
-                        { name: 'Ramesh K.', text: 'Excellent service! The Innova was brand new and the driver was very polite. Highly recommended.' },
-                        { name: 'Sarah J.', text: 'Booked a Tempo Traveller for our family trip to Coorg. Very comfortable and affordable.' },
-                        { name: 'Priya M.', text: 'Best prices in the market. Much cheaper than Ola for outstation trips.' },
-                        { name: 'Anand V.', text: 'Regular customer since 2015. Always on time and very safe driving.' },
-                        { name: 'Lakshmi S.', text: 'The bus we booked for the wedding was luxurious and clean. Thank you!' },
-                        { name: 'John D.', text: 'Great experience touring Kerala. The driver acted as a guide too.' }
-                    ].map((review, i) => (
-                        <div key={i} style={{
-                            padding: 'var(--spacing-lg)',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: 'var(--radius-md)',
-                            flex: '1 1 300px',
-                            backgroundColor: 'white',
-                            boxShadow: 'var(--shadow-sm)'
-                        }}>
-                            <p style={{ fontStyle: 'italic', marginBottom: 'var(--spacing-md)' }}>"{review.text}"</p>
-                            <strong>- {review.name}</strong>
-                        </div>
-                    ))}
+                <div style={{ marginTop: 'var(--spacing-xl)' }}>
+                    <TestimonialCarousel />
                 </div>
             </section>
 

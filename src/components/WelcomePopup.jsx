@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import offerImg from '../assets/travel_discount_offer.png';
 
 const WelcomePopup = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -74,10 +75,32 @@ const WelcomePopup = () => {
                 boxShadow: 'var(--shadow-lg)',
                 textAlign: 'center'
             }}>
-                {/* Close button removed to enforce filling */}
+                <button
+                    onClick={handleClose}
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '10px',
+                        background: 'white',
+                        border: 'none',
+                        fontSize: '1.5rem',
+                        cursor: 'pointer',
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                        zIndex: 10
+                    }}
+                >&times;</button>
 
                 {step === 'details' && (
                     <>
+                        <div style={{ marginBottom: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+                            <img src={offerImg} alt="Special Offer" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                        </div>
                         <h2 style={{ color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>Welcome to South India Explorer!</h2>
                         <p style={{ marginBottom: 'var(--spacing-lg)', color: '#666' }}>
                             To browse our exclusive packages and offers, please verify your phone number.

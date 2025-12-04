@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useBooking } from '../context/BookingContext';
 import { Helmet } from 'react-helmet-async';
 import sedanImg from '../assets/swift_dzire_white_1764700445755.png';
 import suvImg from '../assets/toyota_innova_crysta_white_1764700427526.png';
@@ -6,6 +7,7 @@ import tempoImg from '../assets/tempo_traveller_white_1764700327141.png';
 import busImg from '../assets/luxury_bus_white_1764700344953.png';
 
 const Vehicles = () => {
+    const { openModal } = useBooking();
     const [selectedType, setSelectedType] = useState('');
     const [selectedVehicle, setSelectedVehicle] = useState('');
 
@@ -32,6 +34,13 @@ const Vehicles = () => {
         { name: 'Tempo Traveller', desc: 'Perfect for large groups (12+1). AC, Push-back seats.', img: tempoImg },
         { name: 'Bus', desc: 'Available for special occasions and large gatherings. Contact for details.', img: busImg },
     ];
+
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const filteredVehicles = vehicleCards.filter(v =>
+        v.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        v.desc.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="container section">
@@ -94,20 +103,36 @@ const Vehicles = () => {
                         </select>
                     </div>
 
-                    <a
-                        href={`https://wa.me/917892665004?text=Hi, I want to book a ${selectedVehicle || selectedType || 'vehicle'}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
+                        onClick={() => openModal(`I am interested in booking a ${selectedVehicle || selectedType || 'vehicle'}. Please provide availability and rates.`)}
                         className="btn btn-primary"
                         style={{ width: '100%', marginTop: 'var(--spacing-md)' }}
                     >
                         Book Now
-                    </a>
+                    </button>
                 </div>
             </div>
 
+            {/* Search Bar */}
+            <div style={{ maxWidth: '500px', margin: '0 auto var(--spacing-xl)' }}>
+                <input
+                    type="text"
+                    placeholder="Search vehicles (e.g., SUV, Bus, Comfort)..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{
+                        width: '100%',
+                        padding: 'var(--spacing-md)',
+                        borderRadius: 'var(--radius-full)',
+                        border: '1px solid var(--color-border)',
+                        fontSize: '1rem',
+                        boxShadow: 'var(--shadow-sm)'
+                    }}
+                />
+            </div>
+
             <div className="flex gap-md" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
-                {vehicleCards.map((v) => (
+                {filteredVehicles.map((v) => (
                     <div key={v.name} style={{
                         border: '1px solid var(--color-border)',
                         borderRadius: 'var(--radius-md)',
@@ -121,15 +146,13 @@ const Vehicles = () => {
                         <div style={{ padding: 'var(--spacing-lg)' }}>
                             <h3>{v.name}</h3>
                             <p style={{ color: 'var(--color-text-light)' }}>{v.desc}</p>
-                            <a
-                                href={`https://wa.me/917892665004?text=Hi, I want to book a ${v.name}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => openModal(`I am interested in booking a ${v.name}. Please provide details.`)}
                                 className="btn btn-primary"
-                                style={{ width: '100%', marginTop: 'var(--spacing-md)', textDecoration: 'none' }}
+                                style={{ width: '100%', marginTop: 'var(--spacing-md)' }}
                             >
-                                Book via WhatsApp
-                            </a>
+                                Book Now
+                            </button>
                         </div>
                     </div>
                 ))}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useBooking } from '../context/BookingContext';
 
 const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in booking a trip." }) => {
     const [formData, setFormData] = useState({
@@ -13,10 +14,12 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
 
     if (!isOpen) return null;
 
+    const { saveBooking } = useBooking();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const text = `Name: ${formData.name}%0APhone: ${formData.phone}%0AMessage: ${formData.message}`;
-        window.open(`https://wa.me/917892665004?text=${text}`, '_blank');
+        saveBooking(formData);
+        alert('Thank you! Your request has been received. We will contact you shortly.');
         onClose();
     };
 
