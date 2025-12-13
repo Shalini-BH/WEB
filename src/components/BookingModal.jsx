@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { useBooking } from '../context/BookingContext';
 
 const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in booking a trip." }) => {
@@ -7,7 +9,7 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
         phone: '',
         message: prefillMessage,
         pickupLocation: '',
-        pickupDateTime: ''
+        pickupDateTime: new Date()
     });
 
     useEffect(() => {
@@ -46,7 +48,9 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
                 width: '90%',
                 maxWidth: '500px',
                 position: 'relative',
-                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                maxHeight: '90vh',
+                overflowY: 'auto'
             }} onClick={e => e.stopPropagation()}>
                 <button
                     onClick={onClose}
@@ -60,7 +64,8 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
                         cursor: 'pointer',
                         color: '#6b7280',
                         transition: 'color 0.2s',
-                        lineHeight: 1
+                        lineHeight: 1,
+                        zIndex: 10
                     }}
                     onMouseOver={(e) => e.currentTarget.style.color = '#111827'}
                     onMouseOut={(e) => e.currentTarget.style.color = '#6b7280'}
@@ -136,24 +141,19 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
                                 onChange={e => setFormData({ ...formData, pickupLocation: e.target.value })}
                             />
                         </div>
-                        <div>
+                        <div className="custom-datepicker-wrapper">
                             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>Pickup Date & Time</label>
-                            <input
-                                type="datetime-local"
+                            <DatePicker
+                                selected={formData.pickupDateTime}
+                                onChange={(date) => setFormData({ ...formData, pickupDateTime: date })}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                dateFormat="MMMM d, yyyy h:mm aa"
+                                className="w-full"
                                 required
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    borderRadius: '0.5rem',
-                                    border: '1px solid #d1d5db',
-                                    fontSize: '1rem',
-                                    outline: 'none',
-                                    transition: 'border-color 0.2s'
-                                }}
-                                onFocus={(e) => e.target.style.borderColor = '#2563eb'}
-                                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
-                                value={formData.pickupDateTime}
-                                onChange={e => setFormData({ ...formData, pickupDateTime: e.target.value })}
+                                placeholderText="Select Date & Time"
+                                wrapperClassName="w-full"
                             />
                         </div>
                     </div>
