@@ -5,7 +5,9 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
-        message: prefillMessage
+        message: prefillMessage,
+        pickupLocation: '',
+        pickupDateTime: ''
     });
 
     useEffect(() => {
@@ -30,70 +32,171 @@ const BookingModal = ({ isOpen, onClose, prefillMessage = "I am interested in bo
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.5)',
+            backgroundColor: 'rgba(0,0,0,0.6)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 1000
+            zIndex: 1000,
+            backdropFilter: 'blur(4px)'
         }} onClick={onClose}>
             <div style={{
                 backgroundColor: 'white',
-                padding: 'var(--spacing-xl)',
-                borderRadius: 'var(--radius-lg)',
+                padding: '2.5rem',
+                borderRadius: '16px',
                 width: '90%',
                 maxWidth: '500px',
-                position: 'relative'
+                position: 'relative',
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
             }} onClick={e => e.stopPropagation()}>
                 <button
                     onClick={onClose}
                     style={{
                         position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        background: 'none',
+                        top: '1.5rem',
+                        right: '1.5rem',
+                        background: 'transparent',
                         border: 'none',
                         fontSize: '1.5rem',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        color: '#6b7280',
+                        transition: 'color 0.2s',
+                        lineHeight: 1
                     }}
+                    onMouseOver={(e) => e.currentTarget.style.color = '#111827'}
+                    onMouseOut={(e) => e.currentTarget.style.color = '#6b7280'}
                 >&times;</button>
 
-                <h2 style={{ marginTop: 0, color: 'var(--color-primary)' }}>Request a Callback</h2>
-                <p>Leave your details and we will call you back shortly to confirm your plan.</p>
+                <h2 style={{ marginTop: 0, marginBottom: '0.5rem', color: '#111827', fontSize: '1.875rem', fontWeight: '700' }}>Request a Callback</h2>
+                <p style={{ color: '#6b7280', marginTop: 0, marginBottom: '2rem' }}>Leave your details and we will call you back shortly to confirm your plan.</p>
 
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     <div>
-                        <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)' }}>Name</label>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>Name</label>
                         <input
                             type="text"
                             required
-                            style={{ width: '100%', padding: 'var(--spacing-sm)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)' }}
+                            placeholder="Your Full Name"
+                            style={{
+                                width: '100%',
+                                padding: '0.75rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #d1d5db',
+                                fontSize: '1rem',
+                                outline: 'none',
+                                transition: 'border-color 0.2s'
+                            }}
+                            onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             value={formData.name}
                             onChange={e => setFormData({ ...formData, name: e.target.value })}
                         />
                     </div>
 
                     <div>
-                        <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)' }}>Phone Number</label>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>Phone Number</label>
                         <input
                             type="tel"
                             required
-                            style={{ width: '100%', padding: 'var(--spacing-sm)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)' }}
+                            placeholder="+91 98765 43210"
+                            style={{
+                                width: '100%',
+                                padding: '0.75rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #d1d5db',
+                                fontSize: '1rem',
+                                outline: 'none',
+                                transition: 'border-color 0.2s'
+                            }}
+                            onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             value={formData.phone}
                             onChange={e => setFormData({ ...formData, phone: e.target.value })}
                         />
                     </div>
 
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>Pickup Location</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder="e.g. Airport, Whitefield"
+                                style={{
+                                    width: '100%',
+                                    padding: '0.75rem',
+                                    borderRadius: '0.5rem',
+                                    border: '1px solid #d1d5db',
+                                    fontSize: '1rem',
+                                    outline: 'none',
+                                    transition: 'border-color 0.2s'
+                                }}
+                                onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+                                value={formData.pickupLocation}
+                                onChange={e => setFormData({ ...formData, pickupLocation: e.target.value })}
+                            />
+                        </div>
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>Pickup Date & Time</label>
+                            <input
+                                type="datetime-local"
+                                required
+                                style={{
+                                    width: '100%',
+                                    padding: '0.75rem',
+                                    borderRadius: '0.5rem',
+                                    border: '1px solid #d1d5db',
+                                    fontSize: '1rem',
+                                    outline: 'none',
+                                    transition: 'border-color 0.2s'
+                                }}
+                                onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+                                value={formData.pickupDateTime}
+                                onChange={e => setFormData({ ...formData, pickupDateTime: e.target.value })}
+                            />
+                        </div>
+                    </div>
+
                     <div>
-                        <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)' }}>Message / Plan Details</label>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>Message / Plan Details</label>
                         <textarea
                             rows="3"
-                            style={{ width: '100%', padding: 'var(--spacing-sm)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)' }}
+                            placeholder="Tell us more about your trip requirement..."
+                            style={{
+                                width: '100%',
+                                padding: '0.75rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #d1d5db',
+                                fontSize: '1rem',
+                                resize: 'vertical',
+                                outline: 'none',
+                                transition: 'border-color 0.2s',
+                                fontFamily: 'inherit'
+                            }}
+                            onFocus={(e) => e.target.style.borderColor = '#2563eb'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             value={formData.message}
                             onChange={e => setFormData({ ...formData, message: e.target.value })}
                         ></textarea>
                     </div>
 
-                    <button type="submit" className="btn btn-primary" style={{ marginTop: 'var(--spacing-sm)' }}>
+                    <button type="submit" style={{
+                        marginTop: '0.5rem',
+                        width: '100%',
+                        padding: '0.875rem',
+                        backgroundColor: '#2563eb',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '0.5rem',
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.2s'
+                    }}
+                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
+                    >
                         Request Callback
                     </button>
                 </form>

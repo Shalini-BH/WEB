@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useBooking } from '../context/BookingContext';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import DestinationMap from '../components/DestinationMap';
+import SEO from '../components/SEO';
 import heroImg from '../assets/hero_south_india_landscape_1764700257274.png';
 import mysoreImg from '../assets/dest_mysore_palace_1764719793546.png';
 import goaImg from '../assets/dest_goa_beach_1764719811518.png';
@@ -33,203 +33,235 @@ import gokarnaImg from '../assets/dest_gokarna.JPG';
 
 const Home = () => {
     const { openModal } = useBooking();
+
     return (
-        <div>
-            <Helmet>
-                <title>Best Service Cabs and Travels | South India Tours</title>
-                <meta name="description" content="Founded in 2007, we provide premium car rentals, buses, and tour packages. Cheaper than Ola/Uber with the best customer experience." />
-            </Helmet>
+        <div style={{ paddingBottom: '4rem' }}>
+            <SEO
+                title="Premium South India Tours & Travels"
+                description="Experience the beauty of South India with Best Service Cabs. Luxury cars, expert drivers, and custom tour packages since 2007."
+            />
+
             {/* Hero Section */}
-            <section className="section" style={{
-                backgroundImage: `linear-gradient(rgba(0, 106, 78, 0.8), rgba(0, 106, 78, 0.8)), url(${heroImg})`,
+            <section style={{
+                height: '90vh',
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${heroImg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
                 color: 'white',
-                padding: 'var(--spacing-2xl) 0',
-                textAlign: 'center'
+                position: 'relative'
             }}>
-                <div className="container">
-                    <h1 style={{ fontSize: '3rem', marginBottom: 'var(--spacing-lg)', color: 'white' }}>
-                        Best Service Cabs and Travels
+                <div className="container animate-fade-in-up">
+                    <span style={{
+                        textTransform: 'uppercase',
+                        letterSpacing: '3px',
+                        fontSize: '0.9rem',
+                        fontWeight: '600',
+                        backgroundColor: 'rgba(255,255,255,0.2)',
+                        padding: '0.5rem 1rem',
+                        borderRadius: '20px',
+                        backdropFilter: 'blur(5px)'
+                    }}>Welcome to South India</span>
+                    <h1 style={{
+                        fontSize: 'clamp(3rem, 5vw, 5rem)',
+                        marginTop: '1.5rem',
+                        marginBottom: '1rem',
+                        lineHeight: 1.1,
+                        textShadow: '0 4px 10px rgba(0,0,0,0.3)'
+                    }}>
+                        Discover the <span style={{ color: '#34d399' }}>Extraordinary</span>
                     </h1>
-                    <p style={{ fontSize: '1.25rem', marginBottom: 'var(--spacing-xl)', maxWidth: '800px', margin: '0 auto var(--spacing-xl)' }}>
-                        Serving over 25,000+ happy passengers since 2007. <br />
-                        <strong>Better rates than Ola/Uber. Premium comfort guaranteed.</strong>
+                    <p style={{
+                        fontSize: '1.25rem',
+                        maxWidth: '700px',
+                        margin: '0 auto 2.5rem',
+                        opacity: 0.9,
+                        color: '#f3f4f6'
+                    }}>
+                        Your journey begins with us. Premium vehicles, curated experiences, and memories that last a lifetime.
                     </p>
                     <div className="flex gap-md justify-center" style={{ flexWrap: 'wrap' }}>
                         <button
-                            onClick={() => openModal("I want to book a ride. Please contact me.")}
-                            className="btn btn-accent"
-                            style={{ backgroundColor: 'var(--color-accent)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '1rem' }}
+                            onClick={() => openModal("I want to book a ride for my upcoming trip.")}
+                            className="btn btn-primary"
+                            style={{
+                                padding: '1rem 2.5rem',
+                                fontSize: '1.1rem',
+                                boxShadow: '0 10px 25px -5px rgba(5, 150, 105, 0.5)'
+                            }}
                         >
-                            Book Your Ride
+                            Start Your Journey
                         </button>
-                        <Link to="/tours" className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>
-                            View Tour Packages
+                        <Link to="/tours" className="btn btn-outline" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+                            View Packages
                         </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Quick Services */}
+            {/* Services Grid */}
             <section className="section container">
-                <h2 className="text-center">Our Services</h2>
-                <div className="flex gap-md" style={{ flexWrap: 'wrap', justifyContent: 'center', marginTop: 'var(--spacing-xl)' }}>
-                    {['Car Rentals', '12+1 Tempo Traveller', 'Tour Packages', 'Group Tours'].map((service) => (
-                        <div key={service} style={{
-                            padding: 'var(--spacing-lg)',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: 'var(--radius-md)',
-                            textAlign: 'center',
-                            flex: '1 1 250px'
-                        }}>
-                            <h3>{service}</h3>
-                            <p>Professional service for your travel needs.</p>
+                <div className="text-center" style={{ marginBottom: '4rem' }}>
+                    <h2 className="text-gradient" style={{ fontSize: '2.5rem', display: 'inline-block' }}>World-Class Services</h2>
+                    <p>Designed for your comfort and convenience</p>
+                </div>
+
+                <div className="grid-auto-fit">
+                    {[
+                        { title: 'Luxury Fleet', desc: 'From Sedans to SUVs, travel in style and comfort.', icon: '🚗' },
+                        { title: 'Group Travel', desc: ' Spacious Tempo Travellers for family & friends.', icon: '🚐' },
+                        { title: 'Custom Tours', desc: 'Tailor-made itineraries just for you.', icon: '🗺️' },
+                        { title: '24/7 Support', desc: 'We are here for you, anytime, anywhere.', icon: '🎧' }
+                    ].map((service, index) => (
+                        <div key={index} className="glass-card" style={{ padding: '2rem', textAlign: 'center' }}>
+                            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{service.icon}</div>
+                            <h3 style={{ fontSize: '1.25rem' }}>{service.title}</h3>
+                            <p style={{ margin: 0, opacity: 0.8 }}>{service.desc}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
-            {/* Trust Indicators */}
-            <section className="section" style={{ backgroundColor: 'var(--color-background)' }}>
-                <div className="container text-center">
-                    <h2>Why Choose Us?</h2>
-                    <div className="flex gap-md" style={{ flexWrap: 'wrap', justifyContent: 'center', marginTop: 'var(--spacing-xl)' }}>
-                        {['Since 2007', '25,000+ Passengers', '10,000+ Vehicles', 'Cheaper than Apps'].map((feature) => (
-                            <div key={feature} style={{ flex: '1 1 200px' }}>
-                                <h4 style={{ color: 'var(--color-primary)' }}>{feature}</h4>
-                            </div>
-                        ))}
+            {/* Why Choose Us */}
+            <section className="section" style={{ backgroundColor: '#111827', color: 'white' }}>
+                <div className="container">
+                    <div className="flex flex-col items-center text-center">
+                        <h2 style={{ color: 'white' }}>Why Travelers Trust Us</h2>
+                        <div className="grid-auto-fit" style={{ width: '100%', marginTop: '3rem', gap: '3rem' }}>
+                            {[
+                                { number: '15+', label: 'Years Experience' },
+                                { number: '25k+', label: 'Happy Travelers' },
+                                { number: '10k+', label: 'Successful Trips' },
+                                { number: '100%', label: 'Safety Record' }
+                            ].map((stat, i) => (
+                                <div key={i}>
+                                    <div style={{ fontSize: '3.5rem', fontWeight: '800', color: '#34d399', lineHeight: 1 }}>{stat.number}</div>
+                                    <div style={{ fontSize: '1.1rem', marginTop: '0.5rem', opacity: 0.8 }}>{stat.label}</div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Famous Destinations */}
+            {/* Gallery / Popular Destinations */}
             <section className="section container">
-                <h2 className="text-center">Popular Destinations</h2>
-                <p className="text-center" style={{ marginBottom: 'var(--spacing-xl)' }}>Click on any destination to book your trip!</p>
-                <div className="flex gap-md" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+                <div className="text-center" style={{ marginBottom: '4rem' }}>
+                    <h2 className="text-gradient" style={{ fontSize: '2.5rem', display: 'inline-block' }}>Trending Destinations</h2>
+                    <p>Explore the most visited places this season</p>
+                </div>
+
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                    gap: '1.5rem'
+                }}>
                     {[
-                        // Karnataka
-                        { name: 'Mysore', img: mysoreImg, desc: 'Palace & Heritage' },
-                        { name: 'Bangalore', img: bangaloreImg, desc: 'Garden City' },
-                        { name: 'Coorg', img: coorgImg, desc: 'Coffee & Hills' },
-                        { name: 'Hampi', img: hampiImg, desc: 'Ancient Ruins' },
-                        { name: 'Gokarna', img: gokarnaImg, desc: 'Beaches & Temples' },
-                        { name: 'Chikmagalur', img: chikmagalurImg, desc: 'Nature & Trekking' },
-                        { name: 'Kukke Subramanya', img: kukkeImg, desc: 'Pilgrimage' },
-
-                        // Tamil Nadu
-                        { name: 'Chennai', img: chennaiImg, desc: 'Marina Beach' },
-                        { name: 'Madurai', img: maduraiImg, desc: 'Meenakshi Temple' },
-                        { name: 'Ooty', img: ootyImg, desc: 'Hill Station' },
+                        { name: 'Mysore', img: mysoreImg, desc: 'City of Palaces' },
+                        { name: 'Coorg', img: coorgImg, desc: 'Scotland of India' },
+                        { name: 'Ooty', img: ootyImg, desc: 'Queen of Hills' },
+                        { name: 'Goa', img: goaImg, desc: 'Sun, Sand & Sea' },
+                        { name: 'Munnar', img: munnarImg, desc: 'Backwaters & Tea' },
+                        { name: 'Hampi', img: hampiImg, desc: 'Historic Ruins' },
+                        { name: 'Wayanad', img: wayanadImg, desc: 'Nature\'s Abode' },
                         { name: 'Kodaikanal', img: kodaikanalImg, desc: 'Princess of Hills' },
-                        { name: 'Rameswaram', img: rameswaramImg, desc: 'Holy Island' },
-                        { name: 'Kanyakumari', img: kanyakumariImg, desc: 'Southern Tip' },
-                        { name: 'Mahabalipuram', img: mahabalipuramImg, desc: 'Rock Cut Temples' },
-
-                        // Kerala
-                        { name: 'Munnar', img: munnarImg, desc: 'Tea Gardens' },
-                        { name: 'Alleppey', img: alleppeyImg, desc: 'Backwaters' },
-                        { name: 'Kochi', img: kochiImg, desc: 'Queen of Arabian Sea' },
-                        { name: 'Wayanad', img: wayanadImg, desc: 'Nature & Spices' },
-                        { name: 'Thekkady', img: thekkadyImg, desc: 'Wildlife' },
-                        { name: 'Varkala', img: varkalaImg, desc: 'Cliffs & Beaches' },
-
-                        // Others
-                        { name: 'Goa', img: goaImg, desc: 'Party & Beaches' },
-                        { name: 'Tirupati', img: tirupatiImg, desc: 'Lord Venkateswara' },
-                        { name: 'Hyderabad', img: hyderabadImg, desc: 'City of Pearls' },
-                        { name: 'Pondicherry', img: pondicherryImg, desc: 'French Colony' },
-                        { name: 'Araku Valley', img: arakuImg, desc: 'Scenic Valley' },
-                        { name: 'Hosur', img: hosurImg, desc: 'Industrial Hub' },
-
-                    ].map((dest) => (
+                    ].map((dest, index) => (
                         <div
-                            key={dest.name}
+                            key={index}
+                            className="glass-card"
                             style={{
-                                flex: '1 1 250px',
+                                height: '350px',
                                 position: 'relative',
-                                borderRadius: 'var(--radius-md)',
                                 overflow: 'hidden',
-                                height: '250px',
                                 cursor: 'pointer',
-                                // boxShadow: 'var(--shadow-md)',
-                                textColor: 'white',
-                                transition: 'transform 0.2s'
+                                padding: 0
                             }}
-                            onClick={() => {
-                                openModal(`I am interested in a trip to ${dest.name}. Please provide details.`);
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                            onClick={() => openModal(`I'm interested in a trip to ${dest.name}`)}
                         >
-                            <img src={dest.img} alt={dest.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img
+                                src={dest.img}
+                                alt={dest.name}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    transition: 'transform 0.5s ease'
+                                }}
+                                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                            />
                             <div style={{
                                 position: 'absolute',
                                 bottom: 0,
                                 left: 0,
                                 right: 0,
-                                background: 'linear-gradient(to top, rgba(50, 47, 47, 0.95) 0%, rgba(44, 40, 40, 0.7) 50%, transparent 100%)',
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                                padding: '2rem 1.5rem',
                                 color: 'white',
-                                padding: 'var(--spacing-lg)',
-                                textAlign: 'left'
+                                pointerEvents: 'none'
                             }}>
-                                <h3 style={{
-                                    margin: 0,
-                                    fontSize: '1.75rem',
-                                    fontWeight: '800',
-                                    textColor: 'white',
-                                    textShadow: '2px 2px 4px rgba(250, 237, 237, 0.9)',
-                                    letterSpacing: '0.5px'
-                                }}>
-                                    {dest.name}
-                                </h3>
-                                <p style={{
-                                    margin: 'var(--spacing-xs) 0 0 0',
-                                    fontSize: '1rem',
-                                    fontWeight: '500',
-                                    opacity: 0.9,
-                                    // textShadow: '1px 1px 2px rgba(255, 250, 250, 0.8)'
-                                }}>
-                                    {dest.desc}
-                                </p>
+                                <h3 style={{ margin: 0, fontSize: '1.5rem', color: 'white' }}>{dest.name}</h3>
+                                <p style={{ margin: 0, opacity: 0.9, fontSize: '0.9rem' }}>{dest.desc}</p>
                             </div>
                         </div>
                     ))}
                 </div>
+
+                <div className="text-center" style={{ marginTop: '3rem' }}>
+                    <Link to="/tours" className="btn btn-outline" style={{ color: '#111827', borderColor: '#111827' }}>
+                        View All Destinations
+                    </Link>
+                </div>
             </section>
 
-            {/* Destination Map */}
-            <section className="section container">
-                <h2 className="text-center">Explore Our Destinations</h2>
-                <p className="text-center" style={{ marginBottom: 'var(--spacing-xl)' }}>
-                    We cover all major tourist spots in South India.
-                </p>
-                <DestinationMap />
+            {/* Map Section */}
+            <section className="section" style={{ backgroundColor: '#f3f4f6' }}>
+                <div className="container">
+                    <h2 className="text-center">Interactive Map</h2>
+                    <p className="text-center" style={{ marginBottom: '3rem' }}>Plan your route across South India</p>
+                    <div className="glass-panel" style={{ padding: '1rem', borderRadius: '1rem' }}>
+                        <DestinationMap />
+                    </div>
+                </div>
             </section>
 
-            {/* Customer Reviews */}
+            {/* Testimonials */}
             <section className="section container">
-                <h2 className="text-center">What Our Customers Say</h2>
-                <div style={{ marginTop: 'var(--spacing-xl)' }}>
+                <h2 className="text-center">Guest Experiences</h2>
+                <div style={{ marginTop: '3rem' }}>
                     <TestimonialCarousel />
                 </div>
             </section>
 
             {/* CTA */}
-            <section className="section container text-center">
+            <section className="container" style={{ margin: '4rem auto' }}>
                 <div style={{
-                    backgroundColor: 'var(--color-secondary-light)',
-                    padding: 'var(--spacing-xl)',
-                    borderRadius: 'var(--radius-lg)',
-                    color: 'white'
+                    background: 'linear-gradient(135deg, #111827 0%, #374151 100%)',
+                    borderRadius: '24px',
+                    padding: '4rem 2rem',
+                    textAlign: 'center',
+                    color: 'white',
+                    position: 'relative',
+                    overflow: 'hidden'
                 }}>
-                    <h2>Ready to Plan Your Trip?</h2>
-                    <p style={{ fontSize: '1.2rem' }}>Call us for the best price quotes and custom itineraries.</p>
-                    <Link to="/contact" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-secondary)', marginTop: 'var(--spacing-md)' }}>
-                        Contact Support
-                    </Link>
+                    <div style={{ position: 'relative', zIndex: 1 }}>
+                        <h2 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1rem' }}>Ready for an Adventure?</h2>
+                        <p style={{ fontSize: '1.25rem', opacity: 0.9, marginBottom: '2rem' }}>
+                            Let us handle the driving while you make the memories.
+                        </p>
+                        <Link to="/contact" className="btn" style={{
+                            backgroundColor: 'white',
+                            color: '#111827',
+                            padding: '1rem 3rem',
+                            fontWeight: 'bold'
+                        }}>
+                            Contact Us Today
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>
