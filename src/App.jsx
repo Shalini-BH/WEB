@@ -9,6 +9,10 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import AdminDashboard from './pages/AdminDashboard';
 import { BookingProvider } from './context/BookingContext';
+import AirportTransfer from './pages/services/AirportTransfer';
+import OneWayCab from './pages/services/OneWayCab';
+import HourlyRental from './pages/services/HourlyRental';
+import RoundTrip from './pages/services/RoundTrip';
 
 function App() {
   return (
@@ -24,6 +28,12 @@ function App() {
             <Route path="blog" element={<Blog />} />
             <Route path="contact" element={<Contact />} />
             <Route path="admin" element={<AdminDashboard />} />
+
+            {/* Service Routes */}
+            <Route path="services/airport-transfer" element={<AirportTransfer />} />
+            <Route path="services/one-way-cab" element={<OneWayCab />} />
+            <Route path="services/hourly-rental" element={<HourlyRental />} />
+            <Route path="services/round-trip" element={<RoundTrip />} />
           </Route>
         </Routes>
       </Router>

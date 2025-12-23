@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useBooking } from '../context/BookingContext';
+import { Car, Plane, Repeat, Clock } from 'lucide-react';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import DestinationMap from '../components/DestinationMap';
 import SEO from '../components/SEO';
@@ -84,21 +85,34 @@ const Home = () => {
                     }}>
                         Your journey begins with us. Premium vehicles, curated experiences, and memories that last a lifetime.
                     </p>
-                    <div className="flex gap-md justify-center" style={{ flexWrap: 'wrap' }}>
-                        <button
-                            onClick={() => openModal("I want to book a ride for my upcoming trip.")}
-                            className="btn btn-primary"
-                            style={{
-                                padding: '1rem 2.5rem',
-                                fontSize: '1.1rem',
-                                boxShadow: '0 10px 25px -5px rgba(5, 150, 105, 0.5)'
-                            }}
-                        >
-                            Start Your Journey
+                    <div className="glass-panel animate-fade-in-up" style={{
+                        marginTop: '3rem',
+                        padding: '1.5rem',
+                        borderRadius: '1rem',
+                        background: 'rgba(255, 255, 255, 0.15)',
+                        backdropFilter: 'blur(10px)',
+                        display: 'inline-flex',
+                        flexWrap: 'wrap',
+                        gap: '1rem',
+                        justifyContent: 'center',
+                        maxWidth: '900px'
+                    }}>
+                        <button onClick={() => openModal("I want to book a One-Way Cab", 'one-way')}
+                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
+                            <Car size={20} /> One Way
                         </button>
-                        <Link to="/tours" className="btn btn-outline" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
-                            View Packages
-                        </Link>
+                        <button onClick={() => openModal("I want to book a Round Trip", 'round-trip')}
+                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
+                            <Repeat size={20} /> Round Trip
+                        </button>
+                        <button onClick={() => openModal("I need Airport Transfer", 'airport-transfer')}
+                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
+                            <Plane size={20} /> Airport
+                        </button>
+                        <button onClick={() => openModal("I need Hourly Rental", 'hourly-rental')}
+                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
+                            <Clock size={20} /> Hourly
+                        </button>
                     </div>
                 </div>
             </section>

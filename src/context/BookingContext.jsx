@@ -5,15 +5,18 @@ const BookingContext = createContext();
 export const BookingProvider = ({ children }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [prefillMessage, setPrefillMessage] = useState("I am interested in booking a trip.");
+    const [tripType, setTripType] = useState('general');
 
-    const openModal = (message = "I am interested in booking a trip.") => {
+    const openModal = (message = "I am interested in booking a trip.", type = 'general') => {
         setPrefillMessage(message);
+        setTripType(type);
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
         setPrefillMessage("I am interested in booking a trip."); // Reset to default
+        setTripType('general');
     };
 
     const saveBooking = (bookingDetails) => {
@@ -29,7 +32,7 @@ export const BookingProvider = ({ children }) => {
     };
 
     return (
-        <BookingContext.Provider value={{ isModalOpen, prefillMessage, openModal, closeModal, saveBooking }}>
+        <BookingContext.Provider value={{ isModalOpen, prefillMessage, tripType, openModal, closeModal, saveBooking }}>
             {children}
         </BookingContext.Provider>
     );
