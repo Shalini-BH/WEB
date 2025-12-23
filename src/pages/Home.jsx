@@ -31,6 +31,7 @@ import pondicherryImg from '../assets/dest_pondicherry.jpg';
 import arakuImg from '../assets/dest_araku.jpg';
 import hosurImg from '../assets/dest_hosur.jpg';
 import gokarnaImg from '../assets/dest_gokarna.JPG';
+import BookingForm from '../components/BookingForm';
 
 const Home = () => {
     const { openModal } = useBooking();
@@ -44,7 +45,8 @@ const Home = () => {
 
             {/* Hero Section */}
             <section style={{
-                height: '90vh',
+                minHeight: '100vh',
+                padding: '6rem 0 4rem',
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${heroImg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -56,7 +58,7 @@ const Home = () => {
                 color: 'white',
                 position: 'relative'
             }}>
-                <div className="container animate-fade-in-up">
+                <div className="container animate-fade-in-up" style={{ width: '100%' }}>
                     <span style={{
                         textTransform: 'uppercase',
                         letterSpacing: '3px',
@@ -85,34 +87,17 @@ const Home = () => {
                     }}>
                         Your journey begins with us. Premium vehicles, curated experiences, and memories that last a lifetime.
                     </p>
-                    <div className="glass-panel animate-fade-in-up" style={{
-                        marginTop: '3rem',
-                        padding: '1.5rem',
-                        borderRadius: '1rem',
-                        background: 'rgba(255, 255, 255, 0.15)',
-                        backdropFilter: 'blur(10px)',
-                        display: 'inline-flex',
-                        flexWrap: 'wrap',
-                        gap: '1rem',
+
+                    {/* Embedded Booking Form */}
+                    <div className="animate-fade-in-up" style={{
+                        marginTop: '2rem',
+                        display: 'flex',
                         justifyContent: 'center',
-                        maxWidth: '900px'
+                        width: '100%'
                     }}>
-                        <button onClick={() => openModal("I want to book a One-Way Cab", 'one-way')}
-                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
-                            <Car size={20} /> One Way
-                        </button>
-                        <button onClick={() => openModal("I want to book a Round Trip", 'round-trip')}
-                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
-                            <Repeat size={20} /> Round Trip
-                        </button>
-                        <button onClick={() => openModal("I need Airport Transfer", 'airport-transfer')}
-                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
-                            <Plane size={20} /> Airport
-                        </button>
-                        <button onClick={() => openModal("I need Hourly Rental", 'hourly-rental')}
-                            className="btn" style={{ backgroundColor: 'white', color: '#111827', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 1.5rem' }}>
-                            <Clock size={20} /> Hourly
-                        </button>
+                        <div style={{ width: '100%', maxWidth: '500px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', borderRadius: '16px' }}>
+                            <BookingForm isEmbed={true} />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -140,25 +125,103 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Why Choose Us */}
+            {/* Why Trust Us - 4 Pillars */}
             <section className="section" style={{ backgroundColor: '#111827', color: 'white' }}>
                 <div className="container">
-                    <div className="flex flex-col items-center text-center">
-                        <h2 style={{ color: 'white' }}>Why Travelers Trust Us</h2>
-                        <div className="grid-auto-fit" style={{ width: '100%', marginTop: '3rem', gap: '3rem' }}>
-                            {[
-                                { number: '15+', label: 'Years Experience' },
-                                { number: '25k+', label: 'Happy Travelers' },
-                                { number: '10k+', label: 'Successful Trips' },
-                                { number: '100%', label: 'Safety Record' }
-                            ].map((stat, i) => (
-                                <div key={i}>
-                                    <div style={{ fontSize: '3.5rem', fontWeight: '800', color: '#34d399', lineHeight: 1 }}>{stat.number}</div>
-                                    <div style={{ fontSize: '1.1rem', marginTop: '0.5rem', opacity: 0.8 }}>{stat.label}</div>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="text-center" style={{ marginBottom: '3rem' }}>
+                        <h2 style={{ color: 'white', fontSize: '2rem' }}>Why Trust Best Service Cabs?</h2>
                     </div>
+                    {/* Desktop: 4 in a row. Mobile: Auto wrap */}
+                    {/* Desktop: 4 in a row. Mobile: Scrollable or reduced grid */}
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 1fr)', // Force 4 columns
+                        gap: '1rem',
+                        alignItems: 'start',
+                        maxWidth: '1000px',
+                        margin: '0 auto'
+                    }}>
+                        {[
+                            { icon: '🛡️', title: 'Safety First', desc: 'Verified drivers & tracked trips.' },
+                            { icon: '🤝', title: 'Reliability', desc: 'On-time pickup, every time.' },
+                            { icon: '💰', title: 'Transparent', desc: 'No hidden costs. Best rates.' },
+                            { icon: '🎧', title: '24/7 Support', desc: 'Always here to help you.' }
+                        ].map((item, i) => (
+                            <div key={i} style={{ textAlign: 'center', padding: '0.5rem' }}>
+                                <div style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>{item.icon}</div>
+                                <h3 style={{ color: 'white', fontSize: '1rem', marginBottom: '0.25rem' }}>{item.title}</h3>
+                                <p style={{ color: '#9ca3af', fontSize: '0.85rem', margin: 0, lineHeight: 1.4 }}>{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Transparent Pricing - Gozo Style */}
+            <section className="section container">
+                <div className="text-center" style={{ marginBottom: '4rem' }}>
+                    <h2 className="text-gradient">Transparent Pricing</h2>
+                    <p>No hidden charges. Pay for what you use.</p>
+                </div>
+
+                <div className="grid-auto-fit">
+                    {[
+                        { type: 'Hatchback', model: 'Indica / Celerio', price: '11', unit: '/km', seats: '4+1' },
+                        { type: 'Sedan', model: 'Dzire / Etios', price: '13', unit: '/km', seats: '4+1' },
+                        { type: 'SUV', model: 'Innova / Ertiga', price: '17', unit: '/km', seats: '6+1' },
+                        { type: 'Premium', model: 'Innova Crysta', price: '22', unit: '/km', seats: '6+1' }
+                    ].map((car, index) => (
+                        <div key={index} className="glass-card" style={{
+                            position: 'relative',
+                            padding: '2rem',
+                            borderTop: '4px solid var(--color-secondary)',
+                            overflow: 'hidden'
+                        }}>
+                            {/* Discount Ribbon */}
+                            <div style={{
+                                position: 'absolute',
+                                top: '0',
+                                left: '0',
+                                width: '100%',
+                                background: '#34d399',
+                                color: '#064e3b',
+                                padding: '4px 0',
+                                textAlign: 'center',
+                                fontSize: '0.8rem',
+                                fontWeight: '700'
+                            }}>
+                                Additional Discounts for Regular Bookings
+                            </div>
+
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', marginTop: '1.5rem' }}>{car.type}</h3>
+                            <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>{car.model}</p>
+
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>Starting from</span>
+                                <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                                    <span style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--color-secondary)' }}>₹{car.price}</span>
+                                    <span style={{ fontSize: '1rem', color: 'var(--color-text-light)' }}>{car.unit}</span>
+                                </div>
+                            </div>
+
+                            <ul style={{
+                                listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0',
+                                fontSize: '0.9rem', color: 'var(--color-text-light)', lineHeight: '1.8'
+                            }}>
+                                <li>✓ AC Audio System</li>
+                                <li>✓ {car.seats} Seater</li>
+                                <li>✓ Clean & Sanitized</li>
+                            </ul>
+
+                            <button
+                                onClick={() => openModal(`I want to book a ${car.type} (${car.model})`)}
+                                className="btn btn-primary"
+                                style={{ width: '100%' }}
+                            >
+                                Book {car.type}
+                            </button>
+                        </div>
+                    ))}
                 </div>
             </section>
 

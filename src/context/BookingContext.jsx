@@ -28,6 +28,15 @@ export const BookingProvider = ({ children }) => {
             ...bookingDetails
         };
         localStorage.setItem('bookings', JSON.stringify([newBooking, ...existingBookings]));
+
+        // Trigger Automation Simulation
+        console.log('--- STARTING AUTOMATION FLOW ---');
+        import('../services/NotificationService').then(({ NotificationService }) => {
+            NotificationService.sendAdminNotification(bookingDetails);
+            NotificationService.sendAdminWhatsApp(bookingDetails);
+            NotificationService.sendCustomerConfirmation(bookingDetails);
+        });
+
         return true;
     };
 

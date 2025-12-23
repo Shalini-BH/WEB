@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
 
@@ -6,9 +6,18 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [servicesOpen, setServicesOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const location = useLocation();
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);
@@ -39,14 +48,19 @@ const Navbar = () => {
 
     return (
         <nav style={{
-            backgroundColor: 'var(--color-bg)',
-            borderBottom: '1px solid var(--color-border)',
-            position: 'sticky',
+            backgroundColor: isScrolled ? '#111827' : 'transparent', // Solid Dark on scroll, Transparent initially
+            backdropFilter: isScrolled ? 'none' : 'blur(2px)', // Remove blur on solid color for crisper look
+            borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.1)' : 'none',
+            boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.3)' : 'none',
+            position: 'fixed', // Fixed to overlay Hero
+            width: '100%',
             top: 0,
-            zIndex: 100
+            zIndex: 1000,
+            transition: 'all 0.3s ease',
+            color: 'white' // Force white text for contrast on dark
         }}>
-            <div className="container flex justify-between items-center" style={{ height: '70px' }}>
-                <Link to="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-primary)' }}>
+            <div className="container flex justify-between items-center" style={{ height: '80px' }}>
+                <Link to="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
                     Best Service Cabs
                 </Link>
 
@@ -117,8 +131,14 @@ const Navbar = () => {
                                 to={link.path}
                                 style={{
                                     fontWeight: 500,
-                                    color: isActive(link.path) ? 'var(--color-primary)' : 'var(--color-text)'
+                                    color: 'white', // Always white
+                                    textShadow: isScrolled ? 'none' : '0 2px 4px rgba(0,0,0,0.5)', // Shadow when transparent
+                                    fontSize: '1rem',
+                                    padding: '0.5rem 1rem',
+                                    transition: 'color 0.2s'
                                 }}
+                                onMouseOver={(e) => e.currentTarget.style.color = '#34d399'}
+                                onMouseOut={(e) => e.currentTarget.style.color = 'white'}
                             >
                                 {link.name}
                             </Link>
@@ -130,7 +150,7 @@ const Navbar = () => {
                             background: 'none',
                             border: 'none',
                             cursor: 'pointer',
-                            color: 'var(--color-text)',
+                            color: 'white', // White icon
                             display: 'flex',
                             alignItems: 'center'
                         }}
@@ -150,22 +170,23 @@ const Navbar = () => {
             {isOpen && (
                 <div style={{
                     position: 'absolute',
-                    top: '70px',
+                    top: '80px',
                     left: 0,
                     right: 0,
-                    backgroundColor: 'var(--color-bg)',
-                    borderBottom: '1px solid var(--color-border)',
+                    backgroundColor: '#111827', // Solid Dark Background
+                    borderBottom: '1px solid rgba(255,255,255,0.1)',
                     padding: 'var(--spacing-md)',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: 'var(--spacing-md)',
-                    boxShadow: 'var(--shadow-md)'
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5)',
+                    height: '100vh', // Full screen mobile menu
                 }}>
                     {navLinks.map((link) => {
                         if (link.children) {
                             return (
                                 <div key={link.name}>
-                                    <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--color-text)' }}>{link.name}</div>
+                                    <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#f3f4f6' }}>{link.name}</div>
                                     <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                         {link.children.map(child => (
                                             <Link
@@ -174,7 +195,7 @@ const Navbar = () => {
                                                 onClick={() => setIsOpen(false)}
                                                 style={{
                                                     fontSize: '1rem',
-                                                    color: isActive(child.path) ? 'var(--color-primary)' : 'var(--color-text)'
+                                                    color: '#d1d5db'
                                                 }}
                                             >
                                                 {child.name}
@@ -190,9 +211,10 @@ const Navbar = () => {
                                 to={link.path}
                                 onClick={() => setIsOpen(false)}
                                 style={{
-                                    fontSize: '1.1rem',
+                                    fontSize: '1.2rem',
                                     padding: 'var(--spacing-sm) 0',
-                                    color: isActive(link.path) ? 'var(--color-primary)' : 'var(--color-text)'
+                                    color: 'white',
+                                    borderBottom: '1px solid rgba(255,255,255,0.05)'
                                 }}
                             >
                                 {link.name}

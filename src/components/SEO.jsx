@@ -13,9 +13,12 @@ const SEO = ({ title, description, canonical, type = 'website' }) => {
         "@context": "https://schema.org",
         "@type": "TravelAgency",
         "name": "Best Service Cabs and Travels",
+        "alternateName": "South India Tours & Travels",
         "description": metaDescription,
         "url": siteUrl,
-        "telephone": "+919876543210", // Placeholder, should be updated with actual
+        "logo": `${siteUrl}/logo.png`, // Update with actual logo path
+        "telephone": "+919876543210", // Update with actual phone
+        "email": "booking@bestservicecabs.com",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "JP Nagar",
@@ -24,9 +27,33 @@ const SEO = ({ title, description, canonical, type = 'website' }) => {
             "postalCode": "560078",
             "addressCountry": "IN"
         },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "12.9141",
+            "longitude": "77.5862"
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "12.9141",
+                "longitude": "77.5862"
+            },
+            "geoRadius": "500000" // 500km radius
+        },
         "priceRange": "₹₹",
-        "openingHours": "Mo-Su 00:00-23:59",
-        "image": `${siteUrl}/hero-image.jpg` // Placeholder
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "sameAs": [
+            "https://www.facebook.com/bestservicecabs",
+            "https://www.instagram.com/bestservicecabs"
+        ]
     };
 
     return (

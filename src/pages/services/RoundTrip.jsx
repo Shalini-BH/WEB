@@ -1,4 +1,5 @@
 import { useBooking } from '../../context/BookingContext';
+import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import heroImg from '../../assets/hero_south_india_landscape_1764700257274.png'; // Reusing scenic hero image
 
@@ -6,7 +7,8 @@ const RoundTrip = () => {
     const { openModal } = useBooking();
 
     return (
-        <div style={{ paddingBottom: '4rem' }}>
+        <div style={{ paddingBottom: '4rem', position: 'relative' }}>
+            <Link to="/" className="btn btn-outline" style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 10, background: 'rgba(255,255,255,0.8)', padding: '0.5rem 1rem', fontSize: '0.9rem' }}>← Back to Home</Link>
             <SEO
                 title="Outstation Round Trip Cabs | Multi-Day Taxi Packages"
                 description="Best outstation cab service for family vacations and weekend getaways. Experienced drivers, verified vehicles, and transparent per-km billing."

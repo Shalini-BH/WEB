@@ -1,4 +1,5 @@
 import { useBooking } from '../../context/BookingContext';
+import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import heroImg from '../../assets/service_city.png';
 
@@ -6,7 +7,8 @@ const HourlyRental = () => {
     const { openModal } = useBooking();
 
     return (
-        <div style={{ paddingBottom: '4rem' }}>
+        <div style={{ paddingBottom: '4rem', position: 'relative' }}>
+            <Link to="/" className="btn btn-outline" style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 10, background: 'rgba(255,255,255,0.8)', padding: '0.5rem 1rem', fontSize: '0.9rem' }}>← Back to Home</Link>
             <SEO
                 title="Hourly Car Rental & Local Cabs | Full Day Hire"
                 description="Rent a car with driver for local shopping, business meetings, or sightseeing. Flexible packages: 4hr/40km, 8hr/80km, 12hr/120km."
