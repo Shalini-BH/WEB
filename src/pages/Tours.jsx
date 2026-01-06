@@ -59,7 +59,7 @@ const Tours = () => {
             </p>
 
             {/* Search Bar */}
-            <div style={{ maxWidth: '500px', margin: '0 auto var(--spacing-xl)' }}>
+            <div style={{ maxWidth: '500px', width: '100%', margin: '0 auto var(--spacing-xl)' }}>
                 <input
                     type="text"
                     placeholder="Search tours (e.g., Ooty, Temple, Beach)..."
@@ -78,27 +78,28 @@ const Tours = () => {
                 />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--spacing-lg)' }}>
+            <div className="grid-dynamic grid-tours" style={{ padding: '0' }}>
                 {filteredTours.map((tour) => (
-                    <div key={tour.name} style={{
-                        border: '1px solid var(--color-border)',
-                        borderRadius: 'var(--radius-md)',
+                    <div key={tour.name} className="card-base card-hover" style={{
+                        padding: '0',
                         overflow: 'hidden',
-                        backgroundColor: 'var(--color-bg)',
-                        boxShadow: 'var(--shadow-sm)'
+                        position: 'relative',
+                        border: 'none',
+                        height: '400px',
+                        width: '100%'
                     }}>
-                        <div style={{ height: '200px', overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: '100%', position: 'relative' }}>
                             <img src={tour.img} alt={tour.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        </div>
-                        <div style={{ padding: 'var(--spacing-lg)' }}>
-                            <h3>{tour.name}</h3>
-                            <p><strong>Duration:</strong> {tour.duration}</p>
-                            <p><strong>Highlights:</strong> {tour.highlights}</p>
-                            <div style={{ marginTop: 'var(--spacing-md)' }}>
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 70%)' }}></div>
+
+                            <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem', color: 'white' }}>
+                                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'white' }}>{tour.name}</h3>
+                                <p style={{ fontSize: '0.8125rem', color: '#e2e8f0', marginBottom: '0.5rem' }}>{tour.duration}</p>
+                                <p style={{ fontSize: '0.75rem', color: '#cbd5e1', marginBottom: '1.25rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{tour.highlights}</p>
                                 <button
                                     onClick={() => openModal(`I am interested in the ${tour.name} package (${tour.duration}). Please provide a quote.`)}
-                                    className="btn btn-secondary"
-                                    style={{ width: '100%', display: 'block', textAlign: 'center' }}
+                                    className="btn btn-primary"
+                                    style={{ width: '100%', fontSize: '0.8125rem', padding: '0.6rem' }}
                                 >
                                     Get Quote
                                 </button>

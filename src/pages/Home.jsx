@@ -1,348 +1,241 @@
 import { Link } from 'react-router-dom';
 import { useBooking } from '../context/BookingContext';
-import { Car, Plane, Repeat, Clock } from 'lucide-react';
-import TestimonialCarousel from '../components/TestimonialCarousel';
+import { Shield, Award, Map, Headphones, Car, Star, CheckCircle, ArrowRight, MousePointer2 } from 'lucide-react';
 import DestinationMap from '../components/DestinationMap';
 import SEO from '../components/SEO';
-import heroImg from '../assets/hero_south_india_landscape_1764700257274.png';
+import BookingForm from '../components/BookingForm';
+import TravelerTicker from '../components/TravelerTicker';
+import LiveBookingFeed from '../components/LiveBookingFeed';
+import ValueLockOverlay from '../components/ValueLockOverlay';
+import WelcomePopup from '../components/WelcomePopup';
+
+// Assets
+import heroImg from '../assets/hero_premium_new.png';
 import mysoreImg from '../assets/dest_mysore_palace_1764719793546.png';
 import goaImg from '../assets/dest_goa_beach_1764719811518.png';
-import tirupatiImg from '../assets/dest_tirupati_temple_1764719828916.png';
-import bangaloreImg from '../assets/dest_bangalore_vidhana_soudha_1764719844637.png';
-import chennaiImg from '../assets/dest_chennai_marina_1764719899053.png';
 import coorgImg from '../assets/dest_coorg.png';
-import hampiImg from '../assets/dest_hampi.png';
-import chikmagalurImg from '../assets/dest_chikmagalur.jpg';
-import kukkeImg from '../assets/dest_kukke.jpg';
 import ootyImg from '../assets/dest_ooty.jpg';
-import kodaikanalImg from '../assets/dest_kodaikanal.jpg';
-import munnarImg from '../assets/dest_munnar.jpg';
-import alleppeyImg from '../assets/dest_alleppey.jpg';
-import wayanadImg from '../assets/dest_wayanad.JPG';
-import thekkadyImg from '../assets/dest_thekkady.jpg';
-import varkalaImg from '../assets/dest_varkala.jpg';
-import maduraiImg from '../assets/dest_madurai.jpg';
-import rameswaramImg from '../assets/dest_rameswaram.jpg';
-import kanyakumariImg from '../assets/dest_kanyakumari.jpg';
-import mahabalipuramImg from '../assets/dest_mahabalipuram.jpg';
-import kochiImg from '../assets/dest_kochi.jpg';
-import hyderabadImg from '../assets/dest_hyderabad.jpg';
-import pondicherryImg from '../assets/dest_pondicherry.jpg';
-import arakuImg from '../assets/dest_araku.jpg';
-import hosurImg from '../assets/dest_hosur.jpg';
-import gokarnaImg from '../assets/dest_gokarna.JPG';
-import BookingForm from '../components/BookingForm';
 
 const Home = () => {
     const { openModal } = useBooking();
 
     return (
-        <div style={{ paddingBottom: '4rem' }}>
+        <div className="page-wrapper" style={{ overflow: 'hidden' }}>
             <SEO
-                title="Premium South India Tours & Travels"
-                description="Experience the beauty of South India with Best Service Cabs. Luxury cars, expert drivers, and custom tour packages since 2007."
+                title="Premium South India Tours & Travels | Best Service Cabs"
+                description="Experience the beauty of South India with verified drivers, luxury fleet, and transparent pricing."
             />
 
-            {/* Hero Section */}
-            <section style={{
-                minHeight: '100vh',
-                padding: '6rem 0 4rem',
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${heroImg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundAttachment: 'fixed',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                color: 'white',
-                position: 'relative'
-            }}>
-                <div className="container animate-fade-in-up" style={{ width: '100%' }}>
-                    <span style={{
-                        textTransform: 'uppercase',
-                        letterSpacing: '3px',
-                        fontSize: '0.9rem',
-                        fontWeight: '600',
-                        backgroundColor: 'rgba(255,255,255,0.2)',
-                        padding: '0.5rem 1rem',
-                        borderRadius: '20px',
-                        backdropFilter: 'blur(5px)'
-                    }}>Welcome to South India</span>
-                    <h1 style={{
-                        fontSize: 'clamp(3rem, 5vw, 5rem)',
-                        marginTop: '1.5rem',
-                        marginBottom: '1rem',
-                        lineHeight: 1.1,
-                        textShadow: '0 4px 10px rgba(0,0,0,0.3)'
-                    }}>
-                        Discover the <span style={{ color: '#34d399' }}>Extraordinary</span>
-                    </h1>
-                    <p style={{
-                        fontSize: '1.25rem',
-                        maxWidth: '700px',
-                        margin: '0 auto 2.5rem',
-                        opacity: 0.9,
-                        color: '#f3f4f6'
-                    }}>
-                        Your journey begins with us. Premium vehicles, curated experiences, and memories that last a lifetime.
-                    </p>
+            <LiveBookingFeed />
 
-                    {/* Embedded Booking Form */}
-                    <div className="animate-fade-in-up" style={{
-                        marginTop: '2rem',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        width: '100%'
-                    }}>
-                        <div style={{ width: '100%', maxWidth: '500px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', borderRadius: '16px' }}>
-                            <BookingForm isEmbed={true} />
+            {/* --- Hero Section --- */}
+            <header className="hero-wrapper">
+                <div className="hero-bg">
+                    <img src={heroImg} alt="South India Landscape" />
+                    <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.5) 50%, rgba(15, 23, 42, 0.8) 100%)' }}></div>
+                </div>
+
+                <div className="container hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative', zIndex: 10 }}>
+                    {/* Hero Text */}
+                    <div style={{ textAlign: 'center', maxWidth: '850px', marginBottom: '4rem' }}>
+                        <span className="hero-badge stagger-1" style={{ boxShadow: '0 0 20px rgba(45, 212, 191, 0.3)' }}>No. 1 Premium Cab Service</span>
+                        <h1 className="text-display stagger-2" style={{ marginBottom: '1.5rem', lineHeight: 1.1, color: '#FFFFFF' }}>
+                            Travel South India <br />
+                            <span className="text-gradient-primary">In Absolute Comfort.</span>
+                        </h1>
+                        <p className="text-body-lg stagger-3" style={{ color: '#f1f5f9', marginBottom: '2.5rem', fontWeight: 500, opacity: 0.9, textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+                            We don't just provide cabs; we curate your journey. Experienced chauffeurs, premium vehicles, and the promise of reliability.
+                        </p>
+
+                        <div className="stagger-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem', justifyContent: 'center' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', background: 'rgba(255,255,255,0.05)', padding: '8px 16px', borderRadius: '12px', backdropFilter: 'blur(4px)' }}>
+                                <div style={{ background: 'rgba(45, 212, 191, 0.2)', padding: '6px', borderRadius: '8px' }}>
+                                    <Shield size={18} className="text-primary-light" />
+                                </div>
+                                <span style={{ fontWeight: 500, color: 'white', fontSize: '0.9rem' }}>Safety First</span>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', background: 'rgba(255,255,255,0.05)', padding: '8px 16px', borderRadius: '12px', backdropFilter: 'blur(4px)' }}>
+                                <div style={{ background: 'rgba(251, 191, 36, 0.2)', padding: '6px', borderRadius: '8px' }}>
+                                    <Award size={18} style={{ color: 'var(--accent-light)' }} />
+                                </div>
+                                <span style={{ fontWeight: 500, color: 'white', fontSize: '0.9rem' }}>Best-in-Class</span>
+                            </div>
+                        </div>
+
+                        <button onClick={() => document.getElementById('offer-section').scrollIntoView()} className="btn btn-outline stagger-4" style={{ borderColor: 'rgba(255,255,255,0.4)', color: 'white', padding: '1rem 2rem', backdropFilter: 'blur(8px)' }}>
+                            Explore Pricing <ArrowRight size={18} />
+                        </button>
+                    </div>
+
+                    {/* Hero Booking Form */}
+                    <div className="glass-premium stagger-5" style={{ width: '100%', maxWidth: '850px', padding: '3rem', borderRadius: '24px', position: 'relative' }}>
+                        <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', width: '100px', height: '2px', background: 'linear-gradient(90deg, transparent, var(--color-primary-light), transparent)' }}></div>
+                        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+                            <h3 className="text-h3" style={{ fontSize: '1.75rem', color: '#ffffff', marginBottom: '0.5rem' }}>Instant Travel Estimate</h3>
+                            <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)' }}>Get transparent pricing for your next journey in seconds</p>
+                        </div>
+                        <BookingForm isEmbed={true} />
+                        <div style={{ marginTop: '2rem', textAlign: 'center', fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)' }}>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                                <Star size={14} fill="var(--color-primary-light)" stroke="var(--color-primary-light)" /> 4.9/5 TrustScore from 10k+ Travelers
+                            </span>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            {/* Services Grid */}
-            <section className="section container">
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h2 className="text-gradient" style={{ fontSize: '2.5rem', display: 'inline-block' }}>World-Class Services</h2>
-                    <p>Designed for your comfort and convenience</p>
+                {/* Decorative Scroll Hint */}
+                <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', color: 'white', textAlign: 'center', opacity: 0.6, pointerEvents: 'none' }}>
+                    <p style={{ fontSize: '0.7rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '3px', fontWeight: 600 }}>Explore</p>
+                    <MousePointer2 size={24} style={{ animation: 'float 3s ease-in-out infinite' }} />
                 </div>
+            </header>
 
-                <div className="grid-auto-fit">
-                    {[
-                        { title: 'Luxury Fleet', desc: 'From Sedans to SUVs, travel in style and comfort.', icon: '🚗' },
-                        { title: 'Group Travel', desc: ' Spacious Tempo Travellers for family & friends.', icon: '🚐' },
-                        { title: 'Custom Tours', desc: 'Tailor-made itineraries just for you.', icon: '🗺️' },
-                        { title: '24/7 Support', desc: 'We are here for you, anytime, anywhere.', icon: '🎧' }
-                    ].map((service, index) => (
-                        <div key={index} className="glass-card" style={{ padding: '2rem', textAlign: 'center' }}>
-                            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{service.icon}</div>
-                            <h3 style={{ fontSize: '1.25rem' }}>{service.title}</h3>
-                            <p style={{ margin: 0, opacity: 0.8 }}>{service.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Why Trust Us - 4 Pillars */}
-            <section className="section" style={{ backgroundColor: '#111827', color: 'white' }}>
+            {/* --- Trust Pillars --- */}
+            <section className="section" id="pillars">
                 <div className="container">
-                    <div className="text-center" style={{ marginBottom: '3rem' }}>
-                        <h2 style={{ color: 'white', fontSize: '2rem' }}>Why Trust Best Service Cabs?</h2>
+                    <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 5rem auto' }}>
+                        <span className="hero-badge" style={{ background: 'transparent', border: '1px solid var(--primary)', color: 'var(--primary)' }}>Why Choose Us</span>
+                        <h2 className="text-h2" style={{ marginBottom: '1.5rem' }}>The Gold Standard of Travel</h2>
+                        <p className="text-body-lg">We've redefined outstation travel with a focus on hygiene, punctuality, and professionalism.</p>
                     </div>
-                    {/* Desktop: 4 in a row. Mobile: Auto wrap */}
-                    {/* Desktop: 4 in a row. Mobile: Scrollable or reduced grid */}
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(4, 1fr)', // Force 4 columns
-                        gap: '1rem',
-                        alignItems: 'start',
-                        maxWidth: '1000px',
-                        margin: '0 auto'
-                    }}>
+
+                    <div className="grid-dynamic">
                         {[
-                            { icon: '🛡️', title: 'Safety First', desc: 'Verified drivers & tracked trips.' },
-                            { icon: '🤝', title: 'Reliability', desc: 'On-time pickup, every time.' },
-                            { icon: '💰', title: 'Transparent', desc: 'No hidden costs. Best rates.' },
-                            { icon: '🎧', title: '24/7 Support', desc: 'Always here to help you.' }
-                        ].map((item, i) => (
-                            <div key={i} style={{ textAlign: 'center', padding: '0.5rem' }}>
-                                <div style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>{item.icon}</div>
-                                <h3 style={{ color: 'white', fontSize: '1rem', marginBottom: '0.25rem' }}>{item.title}</h3>
-                                <p style={{ color: '#9ca3af', fontSize: '0.85rem', margin: 0, lineHeight: 1.4 }}>{item.desc}</p>
+                            { icon: <Car />, title: "Premium Fleet", desc: "Reguarly sanitized Sedans, luxury SUVs, and spacious Travelers." },
+                            { icon: <Shield />, title: "Verified Pros", desc: "Experienced chauffeurs background-checked for your safety." },
+                            { icon: <Map />, title: "Custom Tours", desc: "Flexible itineraries designed around your preferences." },
+                            { icon: <Headphones />, title: "Direct Support", desc: "Assistance available 24/7 throughout your entire journey." }
+                        ].map((item, idx) => (
+                            <div key={idx} className="card-base card-hover" style={{ textAlign: 'center' }}>
+                                <div className="icon-box" style={{ margin: '0 auto 1.5rem auto' }}>
+                                    {item.icon}
+                                </div>
+                                <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>{item.title}</h3>
+                                <p className="text-body-sm" style={{ color: 'var(--text-muted)', fontSize: '0.9375rem' }}>{item.desc}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Transparent Pricing - Gozo Style */}
-            <section className="section container">
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h2 className="text-gradient">Transparent Pricing</h2>
-                    <p>No hidden charges. Pay for what you use.</p>
+            {/* --- Pricing Section (Value Locked) --- */}
+            <section className="section section-alt" id="offer-section">
+                <div className="container">
+                    <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem auto' }}>
+                        <h2 className="text-h2">Transparent Per-KM Rates</h2>
+                        <p className="text-body-lg">No hidden charges. No surprises. Just honest pricing.</p>
+                    </div>
+
+                    <ValueLockOverlay>
+                        <div className="grid-dynamic" style={{ alignItems: 'stretch' }}>
+                            {[
+                                { title: "Hatchback", cars: "Indica, Etios Liva", price: "11", color: "#64748b" },
+                                { title: "Executive Sedan", cars: "Dzire, Xcent, Etios", price: "13", color: "var(--primary)" },
+                                { title: "Comfort SUV", cars: "Innova, Ertiga, Marazzo", price: "17", color: "var(--accent)" },
+                                { title: "Premium VIP", cars: "Crysta, Fortuner", price: "22", color: "#1e293b" }
+                            ].map((plan, i) => (
+                                <div key={i} className="card-base card-hover" style={{ padding: '2.5rem 2rem', borderTop: `4px solid ${plan.color}` }}>
+                                    <div style={{ marginBottom: '2rem' }}>
+                                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{plan.title}</h3>
+                                        <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{plan.cars}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '2rem' }}>
+                                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                                            <span style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-muted)' }}>₹</span>
+                                            <span className="text-display" style={{ fontSize: '2.5rem', color: 'var(--text-main)' }}>{plan.price}</span>
+                                            <span style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>/km</span>
+                                        </div>
+                                    </div>
+                                    <ul style={{ textAlign: 'left', marginBottom: '2.5rem', listStyle: 'none' }}>
+                                        {['Includes Driver Allowance', 'Clean Car & Zero Odor', 'Verified Safe Driver'].map((feat, j) => (
+                                            <li key={j} style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem', fontSize: '0.875rem' }}>
+                                                <CheckCircle size={16} style={{ color: plan.color }} /> {feat}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button onClick={() => openModal(plan.title)} className="btn btn-primary" style={{ width: '100%', backgroundColor: plan.color, borderColor: plan.color }}>
+                                        Book Now
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </ValueLockOverlay>
                 </div>
+            </section>
 
-                <div className="grid-auto-fit">
-                    {[
-                        { type: 'Hatchback', model: 'Indica / Celerio', price: '11', unit: '/km', seats: '4+1' },
-                        { type: 'Sedan', model: 'Dzire / Etios', price: '13', unit: '/km', seats: '4+1' },
-                        { type: 'SUV', model: 'Innova / Ertiga', price: '17', unit: '/km', seats: '6+1' },
-                        { type: 'Premium', model: 'Innova Crysta', price: '22', unit: '/km', seats: '6+1' }
-                    ].map((car, index) => (
-                        <div key={index} className="glass-card" style={{
-                            position: 'relative',
-                            padding: '2rem',
-                            borderTop: '4px solid var(--color-secondary)',
-                            overflow: 'hidden'
-                        }}>
-                            {/* Discount Ribbon */}
-                            <div style={{
-                                position: 'absolute',
-                                top: '0',
-                                left: '0',
-                                width: '100%',
-                                background: '#34d399',
-                                color: '#064e3b',
-                                padding: '4px 0',
-                                textAlign: 'center',
-                                fontSize: '0.8rem',
-                                fontWeight: '700'
-                            }}>
-                                Additional Discounts for Regular Bookings
-                            </div>
+            {/* --- Top Destinations --- */}
+            <section className="section">
+                <div className="container">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem' }}>
+                        <div>
+                            <span className="hero-badge" style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)' }}>Travel Inspiration</span>
+                            <h2 className="text-h2">Trending Destinations</h2>
+                        </div>
+                        <Link to="/tours" className="btn btn-outline" style={{ display: 'none' }}>
+                            View Gallery
+                        </Link>
+                    </div>
 
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', marginTop: '1.5rem' }}>{car.type}</h3>
-                            <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>{car.model}</p>
+                    <div className="grid-dynamic">
+                        {[
+                            { name: "Mysore Palace", img: mysoreImg, tag: "Heritage", price: "Starting ₹2,500" },
+                            { name: "Coorg Highlands", img: coorgImg, tag: "Nature", price: "Starting ₹3,800" },
+                            { name: "Ooty Mist", img: ootyImg, tag: "Hills", price: "Starting ₹4,200" },
+                            { name: "Goa Beaches", img: goaImg, tag: "Leisure", price: "Starting ₹12,000" }
+                        ].map((dest, i) => (
+                            <div key={i} className="card-base card-hover" onClick={() => openModal(dest.name)} style={{ padding: '0', cursor: 'pointer', overflow: 'hidden', position: 'relative', border: 'none' }}>
+                                <div style={{ height: '350px', overflow: 'hidden', position: 'relative' }}>
+                                    <img src={dest.img} alt={dest.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)' }}></div>
 
-                            <div style={{ marginBottom: '1.5rem' }}>
-                                <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>Starting from</span>
-                                <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                                    <span style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--color-secondary)' }}>₹{car.price}</span>
-                                    <span style={{ fontSize: '1rem', color: 'var(--color-text-light)' }}>{car.unit}</span>
+                                    <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem' }}>
+                                        <span style={{ background: 'var(--color-primary)', color: 'white', padding: '6px 14px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 600, boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>{dest.tag}</span>
+                                    </div>
+
+                                    <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', color: 'white' }}>
+                                        <h3 className="text-h3" style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>{dest.name}</h3>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                                            <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-primary-light)', fontWeight: 600 }}>{dest.price}</p>
+                                            <ArrowRight size={18} />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <ul style={{
-                                listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0',
-                                fontSize: '0.9rem', color: 'var(--color-text-light)', lineHeight: '1.8'
-                            }}>
-                                <li>✓ AC Audio System</li>
-                                <li>✓ {car.seats} Seater</li>
-                                <li>✓ Clean & Sanitized</li>
-                            </ul>
-
-                            <button
-                                onClick={() => openModal(`I want to book a ${car.type} (${car.model})`)}
-                                className="btn btn-primary"
-                                style={{ width: '100%' }}
-                            >
-                                Book {car.type}
-                            </button>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* Gallery / Popular Destinations */}
-            <section className="section container">
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h2 className="text-gradient" style={{ fontSize: '2.5rem', display: 'inline-block' }}>Trending Destinations</h2>
-                    <p>Explore the most visited places this season</p>
-                </div>
-
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                    gap: '1.5rem'
-                }}>
-                    {[
-                        { name: 'Mysore', img: mysoreImg, desc: 'City of Palaces' },
-                        { name: 'Coorg', img: coorgImg, desc: 'Scotland of India' },
-                        { name: 'Ooty', img: ootyImg, desc: 'Queen of Hills' },
-                        { name: 'Goa', img: goaImg, desc: 'Sun, Sand & Sea' },
-                        { name: 'Munnar', img: munnarImg, desc: 'Backwaters & Tea' },
-                        { name: 'Hampi', img: hampiImg, desc: 'Historic Ruins' },
-                        { name: 'Wayanad', img: wayanadImg, desc: 'Nature\'s Abode' },
-                        { name: 'Kodaikanal', img: kodaikanalImg, desc: 'Princess of Hills' },
-                    ].map((dest, index) => (
-                        <div
-                            key={index}
-                            className="glass-card"
-                            style={{
-                                height: '350px',
-                                position: 'relative',
-                                overflow: 'hidden',
-                                cursor: 'pointer',
-                                padding: 0
-                            }}
-                            onClick={() => openModal(`I'm interested in a trip to ${dest.name}`)}
-                        >
-                            <img
-                                src={dest.img}
-                                alt={dest.name}
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                    transition: 'transform 0.5s ease'
-                                }}
-                                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-                                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                            />
-                            <div style={{
-                                position: 'absolute',
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-                                padding: '2rem 1.5rem',
-                                color: 'white',
-                                pointerEvents: 'none'
-                            }}>
-                                <h3 style={{ margin: 0, fontSize: '1.5rem', color: 'white' }}>{dest.name}</h3>
-                                <p style={{ margin: 0, opacity: 0.9, fontSize: '0.9rem' }}>{dest.desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="text-center" style={{ marginTop: '3rem' }}>
-                    <Link to="/tours" className="btn btn-outline" style={{ color: '#111827', borderColor: '#111827' }}>
-                        View All Destinations
-                    </Link>
-                </div>
-            </section>
-
-            {/* Map Section */}
-            <section className="section" style={{ backgroundColor: '#f3f4f6' }}>
+            {/* --- Map Visibility --- */}
+            <section className="section section-alt">
                 <div className="container">
-                    <h2 className="text-center">Interactive Map</h2>
-                    <p className="text-center" style={{ marginBottom: '3rem' }}>Plan your route across South India</p>
-                    <div className="glass-panel" style={{ padding: '1rem', borderRadius: '1rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <h2 className="text-h2">Service Area Coverage</h2>
+                    </div>
+                    <div className="card-base" style={{ padding: '0.5rem', borderRadius: '24px', overflow: 'hidden' }}>
                         <DestinationMap />
                     </div>
                 </div>
             </section>
 
-            {/* Testimonials */}
-            <section className="section container">
-                <h2 className="text-center">Guest Experiences</h2>
-                <div style={{ marginTop: '3rem' }}>
-                    <TestimonialCarousel />
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="container" style={{ margin: '4rem auto' }}>
-                <div style={{
-                    background: 'linear-gradient(135deg, #111827 0%, #374151 100%)',
-                    borderRadius: '24px',
-                    padding: '4rem 2rem',
-                    textAlign: 'center',
-                    color: 'white',
-                    position: 'relative',
-                    overflow: 'hidden'
-                }}>
-                    <div style={{ position: 'relative', zIndex: 1 }}>
-                        <h2 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1rem' }}>Ready for an Adventure?</h2>
-                        <p style={{ fontSize: '1.25rem', opacity: 0.9, marginBottom: '2rem' }}>
-                            Let us handle the driving while you make the memories.
-                        </p>
-                        <Link to="/contact" className="btn" style={{
-                            backgroundColor: 'white',
-                            color: '#111827',
-                            padding: '1rem 3rem',
-                            fontWeight: 'bold'
-                        }}>
-                            Contact Us Today
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <style>{`
+                @keyframes bounce {
+                    0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+                    40% {transform: translateY(-10px) translateX(-50%);}
+                    60% {transform: translateY(-5px) translateX(-50%);}
+                }
+                .hero-content {
+                    padding-bottom: 4rem;
+                }
+                @media (min-width: 1024px) {
+                    .hero-content {
+                        padding-top: 4rem;
+                    }
+                }
+            `}</style>
         </div>
     );
 };
 
 export default Home;
+

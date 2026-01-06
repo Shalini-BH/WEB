@@ -41,18 +41,18 @@ const AirportTransfer = () => {
             </section>
 
             <section className="container section">
-                <div className="grid-auto-fit" style={{ gap: '2rem' }}>
-                    <div className="glass-card">
-                        <h3>✈️ Flight Tracking</h3>
-                        <p>We monitor your flight schedule to ensure our driver is there when you land, even if your flight is delayed.</p>
+                <div className="grid-dynamic">
+                    <div className="card-base card-hover">
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>✈️ Flight Tracking</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)' }}>We monitor your flight schedule to ensure our driver is there when you land, even if your flight is delayed.</p>
                     </div>
-                    <div className="glass-card">
-                        <h3>🕒 Zero Waiting</h3>
-                        <p>Our drivers arrive 15 minutes early. Step out of the terminal and step into your cab.</p>
+                    <div className="card-base card-hover">
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>🕒 Zero Waiting</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)' }}>Our drivers arrive 15 minutes early. Step out of the terminal and step into your cab.</p>
                     </div>
-                    <div className="glass-card">
-                        <h3>🏷️ Fixed Pricing</h3>
-                        <p>Transparent airport fares inclusive of tolls and parking. No surge pricing ever.</p>
+                    <div className="card-base card-hover">
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>🏷️ Fixed Pricing</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)' }}>Transparent airport fares inclusive of tolls and parking. No surge pricing ever.</p>
                     </div>
                 </div>
             </section>

@@ -42,20 +42,20 @@ const OneWayCab = () => {
 
             <section className="container section">
                 <h2 className="text-center" style={{ marginBottom: '3rem' }}>Popular One-Way Routes</h2>
-                <div className="grid-auto-fit">
+                <div className="grid-dynamic">
                     {[
                         { route: "Bangalore ⇄ Mysore", price: "Starts ₹2,500" },
                         { route: "Bangalore ⇄ Chennai", price: "Starts ₹5,200" },
                         { route: "Chennai ⇄ Pondicherry", price: "Starts ₹3,000" },
                         { route: "Coimbatore ⇄ Ooty", price: "Starts ₹2,200" }
                     ].map((item, i) => (
-                        <div key={i} className="glass-card" style={{ textAlign: 'center' }}>
-                            <h3 style={{ color: '#34d399' }}>{item.route}</h3>
-                            <p style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{item.price}</p>
+                        <div key={i} className="card-base card-hover" style={{ textAlign: 'center' }}>
+                            <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--color-primary)' }}>{item.route}</h3>
+                            <p className="text-display" style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{item.price}</p>
                             <button
                                 onClick={() => openModal(`I'm interested in One-Way trip: ${item.route}`)}
-                                className="btn btn-sm btn-outline"
-                                style={{ marginTop: '1rem' }}
+                                className="btn btn-outline"
+                                style={{ width: '100%' }}
                             >
                                 Check Availability
                             </button>

@@ -222,6 +222,7 @@ img {
 .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
 }
+
 /* React Datepicker Customization */
 .custom-datepicker-wrapper {
     width: 100%;
@@ -281,12 +282,11 @@ img {
 
 /* Contrast Fixes */
 .glass-card h3 {
-    color: #111827; 
-    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+    color: #111827;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 .glass-card p {
     color: #374151;
     font-weight: 500;
 }
-

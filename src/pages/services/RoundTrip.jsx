@@ -41,18 +41,18 @@ const RoundTrip = () => {
             </section>
 
             <section className="container section">
-                <div className="grid-auto-fit" style={{ gap: '2rem' }}>
-                    <div className="glass-card">
-                        <h3>🚗 Dedicated Cab</h3>
-                        <p>The vehicle and chauffeur are at your disposal for the entire duration of the trip.</p>
+                <div className="grid-dynamic">
+                    <div className="card-base card-hover">
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>🚗 Dedicated Cab</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)' }}>The vehicle and chauffeur are at your disposal for the entire duration of the trip.</p>
                     </div>
-                    <div className="glass-card">
-                        <h3>👨‍✈️ Expert Chauffeurs</h3>
-                        <p>Our drivers are guides too. They know the best routes, restaurants, and hidden gems.</p>
+                    <div className="card-base card-hover">
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>👨‍✈️ Expert Chauffeurs</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)' }}>Our drivers are guides too. They know the best routes, restaurants, and hidden gems.</p>
                     </div>
-                    <div className="glass-card">
-                        <h3>🛡️ Safe & Secure</h3>
-                        <p>24x7 support and live tracking for your peace of mind while exploring remote locations.</p>
+                    <div className="card-base card-hover">
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>🛡️ Safe & Secure</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)' }}>24x7 support and live tracking for your peace of mind while exploring remote locations.</p>
                     </div>
                 </div>
 

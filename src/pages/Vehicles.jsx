@@ -106,7 +106,7 @@ const Vehicles = () => {
                     <button
                         onClick={() => openModal(`I am interested in booking a ${selectedVehicle || selectedType || 'vehicle'}. Please provide availability and rates.`)}
                         className="btn btn-primary"
-                        style={{ width: '100%', marginTop: 'var(--spacing-md)' }}
+                        style={{ width: '100%', maxWidth: '300px', marginTop: 'var(--spacing-md)' }}
                     >
                         Book Now
                     </button>
@@ -131,25 +131,19 @@ const Vehicles = () => {
                 />
             </div>
 
-            <div className="flex gap-md" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="grid-vehicles">
                 {filteredVehicles.map((v) => (
-                    <div key={v.name} style={{
-                        border: '1px solid var(--color-border)',
-                        borderRadius: 'var(--radius-md)',
-                        overflow: 'hidden',
-                        flex: '1 1 300px',
-                        maxWidth: '400px'
-                    }}>
-                        <div style={{ height: '200px', backgroundColor: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                            <img src={v.img} alt={v.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div key={v.name} className="card-base card-hover" style={{ padding: '0', overflow: 'hidden' }}>
+                        <div style={{ height: '220px', backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                            <img src={v.img} alt={v.name} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '1rem' }} />
                         </div>
                         <div style={{ padding: 'var(--spacing-lg)' }}>
-                            <h3>{v.name}</h3>
-                            <p style={{ color: 'var(--color-text-light)' }}>{v.desc}</p>
+                            <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>{v.name}</h3>
+                            <p className="text-body-sm" style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', minHeight: '3rem' }}>{v.desc}</p>
                             <button
                                 onClick={() => openModal(`I am interested in booking a ${v.name}. Please provide details.`)}
                                 className="btn btn-primary"
-                                style={{ width: '100%', marginTop: 'var(--spacing-md)' }}
+                                style={{ width: '100%', maxWidth: '200px' }}
                             >
                                 Book Now
                             </button>

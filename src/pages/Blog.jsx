@@ -43,24 +43,13 @@ const Blog = () => {
                 Tips, tricks, and guides for your next South Indian adventure.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--spacing-lg)' }}>
+            <div className="grid-dynamic">
                 {posts.map(post => (
-                    <article key={post.id} style={{
-                        border: '1px solid var(--color-border)',
-                        borderRadius: 'var(--radius-md)',
-                        padding: 'var(--spacing-lg)',
-                        backgroundColor: 'var(--color-surface)',
-                        boxShadow: 'var(--shadow-sm)',
-                        transition: 'transform 0.2s',
-                        cursor: 'pointer'
-                    }}
-                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-                        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                    >
-                        <span style={{ fontSize: '0.9rem', color: 'var(--color-text-light)' }}>{post.date} | {post.author}</span>
-                        <h3 style={{ marginTop: 'var(--spacing-sm)', color: 'var(--color-primary)' }}>{post.title}</h3>
-                        <p style={{ color: 'var(--color-text)' }}>{post.excerpt}</p>
-                        <button className="btn btn-outline" style={{ marginTop: 'var(--spacing-md)', fontSize: '0.9rem' }}>Read More</button>
+                    <article key={post.id} className="card-base card-hover" style={{ cursor: 'pointer' }}>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>{post.date} | {post.author}</span>
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginTop: '0.75rem', marginBottom: '1rem' }}>{post.title}</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', minHeight: '4.5rem' }}>{post.excerpt}</p>
+                        <button className="btn btn-primary" style={{ width: '100%' }}>Read More</button>
                     </article>
                 ))}
             </div>

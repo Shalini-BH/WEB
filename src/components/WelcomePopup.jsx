@@ -1,179 +1,91 @@
 import { useState, useEffect } from 'react';
-import offerImg from '../assets/travel_discount_offer.png';
+import { useBooking } from '../context/BookingContext';
+import { X, ShieldCheck } from 'lucide-react';
 
 const WelcomePopup = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [step, setStep] = useState('details'); // details, otp, success
+    const { isUnlockModalOpen, unlockContent } = useBooking();
+    const [localOpen, setLocalOpen] = useState(false);
+
+    // Controlled by context
+    useEffect(() => {
+        setLocalOpen(isUnlockModalOpen);
+    }, [isUnlockModalOpen]);
+
+    const [step, setStep] = useState('details');
     const [formData, setFormData] = useState({ name: '', phone: '' });
     const [otp, setOtp] = useState('');
-    const [generatedOtp, setGeneratedOtp] = useState('');
 
-    useEffect(() => {
-        const hasSeenPopup = sessionStorage.getItem('hasSeenWelcomePopup_v2');
-        if (!hasSeenPopup) {
-            // Show popup after a short delay
-            const timer = setTimeout(() => setIsOpen(true), 1000);
-            return () => clearTimeout(timer);
-        }
-    }, []);
-
-    const handleClose = () => {
-        setIsOpen(false);
-        sessionStorage.setItem('hasSeenWelcomePopup_v2', 'true');
-    };
+    const handleClose = () => setLocalOpen(false); // In a real app, might want to sync with context close
 
     const handleSendOtp = (e) => {
         e.preventDefault();
-        if (formData.phone.length < 10) {
-            alert('Please enter a valid phone number');
-            return;
-        }
-        // Mock OTP generation
-        const mockOtp = Math.floor(1000 + Math.random() * 9000).toString();
-        setGeneratedOtp(mockOtp);
-        alert(`(Simulated SMS)\n\nYour OTP for South India Explorer is: ${mockOtp}`);
+        alert(`OTP sent to ${formData.phone}: 1234`);
         setStep('otp');
     };
 
-    const handleVerifyOtp = (e) => {
+    const handleVerify = (e) => {
         e.preventDefault();
-        if (otp === generatedOtp || otp === '1234') { // Allow '1234' as master code
-            // Success
-            const text = `*New Lead from Website*%0AName: ${formData.name}%0APhone: ${formData.phone}%0AStatus: OTP Verified`;
-            window.open(`https://wa.me/917892665004?text=${text}`, '_blank');
+        if (otp === '1234') {
+            unlockContent();
             setStep('success');
-            // Only set seen flag on success
-            sessionStorage.setItem('hasSeenWelcomePopup_v2', 'true');
+            setTimeout(() => setLocalOpen(false), 1500);
         } else {
-            alert('Invalid OTP. Please try again.');
+            alert('Wrong OTP');
         }
     };
 
-    if (!isOpen) return null;
+    if (!localOpen) return null;
 
     return (
         <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.85)', // Darker backdrop
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 2000,
-            backdropFilter: 'blur(8px)' // Stronger blur
+            position: 'fixed', inset: 0, zIndex: 100,
+            background: 'rgba(0,0,0,0.7)',
+            backdropFilter: 'blur(5px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
         }}>
-            <div style={{
-                backgroundColor: 'white',
-                padding: 'var(--spacing-xl)',
-                borderRadius: 'var(--radius-lg)',
-                width: '90%',
-                maxWidth: '450px',
+            <div className="animate-fade-in" style={{
+                background: 'white',
+                width: '100%', maxWidth: '400px',
+                borderRadius: '1.5rem',
+                padding: '2rem',
                 position: 'relative',
-                boxShadow: 'var(--shadow-lg)',
-                textAlign: 'center'
+                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)'
             }}>
-                <button
-                    onClick={handleClose}
-                    style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        background: 'white',
-                        border: 'none',
-                        fontSize: '1.5rem',
-                        cursor: 'pointer',
-                        width: '30px',
-                        height: '30px',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-                        zIndex: 10
-                    }}
-                >&times;</button>
+                <button onClick={handleClose} style={{ position: 'absolute', top: '1rem', right: '1rem', background: '#f3f4f6', border: 'none', borderRadius: '50%', padding: '0.5rem', cursor: 'pointer' }}>
+                    <X size={20} color="#4b5563" />
+                </button>
 
-                {step === 'details' && (
-                    <>
-                        <div style={{ marginBottom: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                            <img src={offerImg} alt="Special Offer" style={{ width: '100%', height: 'auto', display: 'block' }} />
-                        </div>
-                        <h2 style={{ color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>Welcome to South India Explorer!</h2>
-                        <p style={{ marginBottom: 'var(--spacing-lg)', color: '#666' }}>
-                            To browse our exclusive packages and offers, please verify your phone number.
-                        </p>
-                        <form onSubmit={handleSendOtp} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-                            <input
-                                type="text"
-                                placeholder="Your Name"
-                                required
-                                style={{ padding: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', border: '1px solid #ddd', fontSize: '1rem' }}
-                                value={formData.name}
-                                onChange={e => setFormData({ ...formData, name: e.target.value })}
-                            />
-                            <input
-                                type="tel"
-                                placeholder="Phone Number"
-                                required
-                                style={{ padding: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', border: '1px solid #ddd', fontSize: '1rem' }}
-                                value={formData.phone}
-                                onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                            />
-                            <button type="submit" className="btn btn-primary" style={{ padding: 'var(--spacing-md)', fontSize: '1.1rem' }}>
-                                Get OTP
-                            </button>
-                        </form>
-                    </>
-                )}
-
-                {step === 'otp' && (
-                    <>
-                        <h2 style={{ color: 'var(--color-primary)' }}>Verify Phone Number</h2>
-                        <p style={{ marginBottom: 'var(--spacing-lg)' }}>Enter the OTP sent to {formData.phone}</p>
-                        <form onSubmit={handleVerifyOtp} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-                            <input
-                                type="text"
-                                placeholder="Enter OTP"
-                                required
-                                maxLength="4"
-                                style={{ padding: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', border: '1px solid #ddd', fontSize: '1.2rem', textAlign: 'center', letterSpacing: '5px' }}
-                                value={otp}
-                                onChange={e => setOtp(e.target.value)}
-                            />
-                            <button type="submit" className="btn btn-primary">
-                                Verify & Unlock Offer
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setStep('details')}
-                                style={{ background: 'none', border: 'none', color: '#666', textDecoration: 'underline', cursor: 'pointer' }}
-                            >
-                                Change Phone Number
-                            </button>
-                        </form>
-                    </>
-                )}
-
-                {step === 'success' && (
-                    <div style={{ animation: 'fadeIn 0.5s ease-in' }}>
-                        <div style={{ fontSize: '4rem', marginBottom: 'var(--spacing-md)' }}>🎉</div>
-                        <h2 style={{ color: 'var(--color-secondary)', fontSize: '2rem', marginBottom: 'var(--spacing-md)' }}>Congratulations!</h2>
-                        <p style={{ fontSize: '1.2rem', marginBottom: 'var(--spacing-lg)' }}>
-                            You have unlocked an exclusive <br />
-                            <strong style={{ color: 'var(--color-accent)', fontSize: '1.5rem' }}>UPTO 30% OFF</strong> <br />
-                            on your first booking!
-                        </p>
-                        <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: 'var(--spacing-xl)' }}>
-                            Our team has received your details and will contact you shortly to help you plan your trip.
-                        </p>
-                        <button onClick={handleClose} className="btn btn-primary">
-                            Explore Packages
-                        </button>
+                <div style={{ textAlign: 'center' }}>
+                    <div style={{ background: '#d1fae5', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto' }}>
+                        <ShieldCheck size={32} color="#059669" />
                     </div>
-                )}
+
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Secure Verification</h2>
+                    <p style={{ color: '#6b7280', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                        {step === 'details' ? 'Unlock member-only rates & permit waivers.' : 'Enter the code sent to your phone.'}
+                    </p>
+
+                    {step === 'details' && (
+                        <form onSubmit={handleSendOtp} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <input type="text" className="form-input" required placeholder="Your Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                            <input type="tel" className="form-input" required placeholder="Phone Number" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                            <button type="submit" className="btn btn-primary">Send OTP</button>
+                        </form>
+                    )}
+
+                    {step === 'otp' && (
+                        <form onSubmit={handleVerify} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <input type="text" className="form-input" style={{ textAlign: 'center', letterSpacing: '0.5rem', fontSize: '1.5rem' }} required maxLength="4" placeholder="0000" value={otp} onChange={e => setOtp(e.target.value)} />
+                            <button type="submit" className="btn btn-primary">Verify & Unlock</button>
+                        </form>
+                    )}
+
+                    {step === 'success' && (
+                        <div style={{ color: '#059669', fontWeight: 'bold', fontSize: '1.2rem' }}>
+                            Success! Unlocking...
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

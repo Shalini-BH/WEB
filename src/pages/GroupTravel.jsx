@@ -34,7 +34,7 @@ const GroupTravel = () => {
                     <a
                         href="tel:+917892665004"
                         className="btn btn-primary"
-                        style={{ marginTop: 'var(--spacing-lg)', width: '100%', textDecoration: 'none' }}
+                        style={{ marginTop: 'var(--spacing-lg)', width: '100%', maxWidth: '300px', textDecoration: 'none', display: 'flex', margin: 'var(--spacing-lg) auto 0' }}
                     >
                         Call to Register
                     </a>

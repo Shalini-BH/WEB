@@ -41,21 +41,21 @@ const HourlyRental = () => {
             </section>
 
             <section className="container section">
-                <div className="grid-auto-fit" style={{ gap: '2rem' }}>
-                    <div className="glass-card" style={{ position: 'relative', overflow: 'hidden' }}>
-                        <div style={{ background: '#34d399', color: '#111827', padding: '0.25rem 1rem', position: 'absolute', top: 0, right: 0, fontWeight: 'bold' }}>Most Popular</div>
-                        <h3>8 Hrs / 80 Kms</h3>
-                        <p>Standard full day package. Ideal for office commute or day-out.</p>
+                <div className="grid-dynamic">
+                    <div className="card-base card-hover" style={{ position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ background: 'var(--color-primary)', color: 'white', padding: '0.25rem 1rem', position: 'absolute', top: 0, right: 0, fontWeight: 'bold', fontSize: '0.75rem', borderRadius: '0 0 0 12px' }}>Most Popular</div>
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>8 Hrs / 80 Kms</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', flex: 1 }}>Standard full day package. Ideal for office commute or day-out.</p>
                         <button onClick={() => openModal("Book 8hr/80km Package")} className="btn btn-outline" style={{ width: '100%' }}>Select Package</button>
                     </div>
-                    <div className="glass-card">
-                        <h3>12 Hrs / 120 Kms</h3>
-                        <p>Extended day package. Great for sightseeing and multiple stops.</p>
+                    <div className="card-base card-hover" style={{ display: 'flex', flexDirection: 'column' }}>
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>12 Hrs / 120 Kms</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', flex: 1 }}>Extended day package. Great for sightseeing and multiple stops.</p>
                         <button onClick={() => openModal("Book 12hr/120km Package")} className="btn btn-outline" style={{ width: '100%' }}>Select Package</button>
                     </div>
-                    <div className="glass-card">
-                        <h3>4 Hrs / 40 Kms</h3>
-                        <p>Half day package. Quick errands or short meetings.</p>
+                    <div className="card-base card-hover" style={{ display: 'flex', flexDirection: 'column' }}>
+                        <h3 className="text-h3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>4 Hrs / 40 Kms</h3>
+                        <p className="text-body-sm" style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem', flex: 1 }}>Half day package. Quick errands or short meetings.</p>
                         <button onClick={() => openModal("Book 4hr/40km Package")} className="btn btn-outline" style={{ width: '100%' }}>Select Package</button>
                     </div>
                 </div>
